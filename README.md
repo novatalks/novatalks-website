@@ -5,7 +5,7 @@
 <h1 align="center">
     Novatalks Website
 </h1>
-<p align="center">NextJs website with Prismic CMS, Typescript</p>
+<p align="center">Multi-language NextJs website with Prismic CMS, Typescript</p>
 
 <p align="center">
  <a href="#about">About</a> •
@@ -17,7 +17,7 @@
 
 ## About
 
-Website for Novatalks student group to showcase events, speakers, members, partner companies, and more.
+Multi-Language website for Novatalks student group to showcase events, speakers, members, partner companies, and more.
 
 ---
 
@@ -40,6 +40,7 @@ Tools and technologies used:
 - [react-world-flags](https://github.com/smucode/react-world-flags#readme) to display locale flags.
 - [react-div-100vh](https://github.com/mvasin/react-div-100vh) to fill 100vh on mobile screens.
 - [three.ja](https://threejs.org/), [react-three.fiber](https://github.com/pmndrs/react-three-fiber) to display an interactive 3D object.
+- [react-div-100vh](https://github.com/mvasin/react-div-100vh) to fill 100vh on mobile screens.
 
 ---
 
@@ -56,6 +57,8 @@ Install:
 Create Prismic CMS account:
 
 - [Prismic CMS](https://prismic.io/)
+
+Create Prismic content. Note: this assumes locales to be pt-pt and en-us. Change `next.config.js` if different.
 
 ### **Clone Project**
 
@@ -83,7 +86,7 @@ $ yarn dev
 ### **Other**
 
 ```bash
-# Start ESLint
+# Start ESLint - previously set to format on file save with VSCode.
 $ yarn lint
 
 # Build SSG
@@ -104,6 +107,6 @@ MIT license. See [LICENSE](LICENSE).
 
 ## Author
 
-Made for NovaTalks by Pedro Almeida -> www.ptalmeida.com
+Made for NovaTalks by Pedro Almeida -> www.ptalmeida.com & contact@ptalmeida.com
 
 Initial template based on [Thalles Ian's Space-Traveling](https://github.com/thallesyam/space-traveling.git).
