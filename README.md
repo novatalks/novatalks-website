@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Logo" src="https://raw.githubusercontent.com/novatalks/novatalks-website/main/public/images/logo.svg" alt="Novatalks">
+  <img alt="Logo" src="https://raw.githubusercontent.com/novatalks/novatalks-website/main/public/images/logo.jpg" alt="Novatalks">
 </h1>
 
 <h1 align="center">
