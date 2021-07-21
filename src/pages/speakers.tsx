@@ -112,7 +112,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const speakersResponse = await prismic.query(
     Prismic.predicates.at('document.type', PageTypeEnum.Speaker),
     {
-      //fetch: ['speaker.name', 'speaker.description'],
+      // fetch: ['speaker.name', 'speaker.description'],
       pageSize: process.env.eventsOnIndex,
       lang: localePathToPrismic(locale),
     }
