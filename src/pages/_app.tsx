@@ -2,8 +2,8 @@ import { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import useDarkMode from 'use-dark-mode';
-import { lightTheme, darkTheme, GlobalStyles } from '../themeConfig';
 import { AnimatePresence } from 'framer-motion';
+import { lightTheme, darkTheme, GlobalStyles } from '../themeConfig';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   // use-dark-mode, toggle dark mode state
