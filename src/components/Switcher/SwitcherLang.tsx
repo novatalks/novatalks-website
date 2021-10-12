@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { IPage } from '../../helpers/interfaces';
 import styled from 'styled-components';
+import { IPage } from '../../helpers/interfaces';
 
 import {
   linkResolver,
@@ -131,8 +131,8 @@ export default function Switcher({ pageType }: Props) {
         <SwitchInput onChange={() => {}} checked={isChecked} type="checkbox" />
         <SwitchIndicator>
           <SwitchIndicatorInner>
-            <FlipFront></FlipFront>
-            <FlipBack></FlipBack>
+            <FlipFront />
+            <FlipBack />
           </SwitchIndicatorInner>
         </SwitchIndicator>
       </SwitchOuter>

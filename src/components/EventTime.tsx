@@ -35,13 +35,13 @@ interface Props {
 }
 
 export default function EventTime({ startTime, endTime, lang }: Props) {
-  let startDate: Date = parseISO(startTime);
-  let endDate: Date = parseISO(endTime);
-  let duration: Duration = intervalToDuration({
+  const startDate: Date = parseISO(startTime);
+  const endDate: Date = parseISO(endTime);
+  const duration: Duration = intervalToDuration({
     start: startDate,
     end: endDate,
   });
-  let dayDif: number = differenceInDays(endDate, startDate);
+  const dayDif: number = differenceInDays(endDate, startDate);
   const locale: Locale = localePos(lang) === 0 ? pt : en;
 
   return (
@@ -65,12 +65,12 @@ function TimeDate({ date, locale }: TimeProps) {
     <OuterWrapper>
       <time
         dateTime={format(date, 'dd-mm-yyyy,HH:mm', {
-          locale: locale,
+          locale,
         })}
       >
         {' '}
         {format(date, 'dd MMM yyyy: HH:mm', {
-          locale: locale,
+          locale,
         })}
       </time>
     </OuterWrapper>
@@ -82,12 +82,12 @@ function TimeDate2({ date, locale }: TimeProps) {
     <OuterWrapper>
       <time
         dateTime={format(date, 'HH:mm', {
-          locale: locale,
+          locale,
         })}
       >
         {' '}
         {format(date, 'HH:mm', {
-          locale: locale,
+          locale,
         })}
       </time>
     </OuterWrapper>

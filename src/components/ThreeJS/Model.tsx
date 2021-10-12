@@ -20,7 +20,7 @@ type GLTFResult = GLTF & {
 const useMousePosition = () => {
   const [mousePosition, setMousePosition] = useState({ x: null, y: null });
 
-  const updateMousePosition = ev => {
+  const updateMousePosition = (ev: any): void => {
     setMousePosition({ x: ev.clientX, y: ev.clientY });
   };
 

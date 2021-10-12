@@ -41,12 +41,11 @@ export const SwitchIndicator = styled.span`
   transform: translate(-50%, -50%)
     translateX(
       ${({ theme }) => {
-        return (
+        return `${
           (parseInt(theme.switchHeight, 10) -
             parseInt(theme.switchLabelWidth, 10)) /
-            2 +
-          'px'
-        );
+          2
+        }px`;
       }}
     );
   display: block;
@@ -153,14 +152,12 @@ export const SwitchInput = styled.input`
         transform: translate(-50%, -50%)
           translateX(
             ${({ theme }) => {
-              return (
+              return `${
                 -(
                   parseInt(theme.switchHeight, 10) -
                   parseInt(theme.switchLabelWidth, 10)
-                ) /
-                  2 +
-                'px'
-              );
+                ) / 2
+              }px`;
             }}
           );
 

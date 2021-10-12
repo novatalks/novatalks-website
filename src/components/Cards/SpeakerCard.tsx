@@ -18,32 +18,28 @@ const OuterWrapper = styled.a`
     filter: grayscale(100%);
     z-index: -1;
     max-width: ${({ theme }) => {
-      return (
+      return `${
         parseInt(theme.speakerDivHeight) -
-        2 * parseInt(theme.defaultBorderLight) +
-        'px'
-      );
+        2 * parseInt(theme.defaultBorderLight)
+      }px`;
     }};
     min-width: ${({ theme }) => {
-      return (
+      return `${
         parseInt(theme.speakerDivHeight) -
-        2 * parseInt(theme.defaultBorderLight) +
-        'px'
-      );
+        2 * parseInt(theme.defaultBorderLight)
+      }px`;
     }};
     max-height: ${({ theme }) => {
-      return (
+      return `${
         parseInt(theme.speakerDivHeight) -
-        2 * parseInt(theme.defaultBorderLight) +
-        'px'
-      );
+        2 * parseInt(theme.defaultBorderLight)
+      }px`;
     }};
     min-height: ${({ theme }) => {
-      return (
+      return `${
         parseInt(theme.speakerDivHeight) -
-        2 * parseInt(theme.defaultBorderLight) +
-        'px'
-      );
+        2 * parseInt(theme.defaultBorderLight)
+      }px`;
     }};
   }
 
@@ -82,14 +78,14 @@ export default function SpeakerCard({ speaker }: Props) {
         <div>
           <Image
             src={speaker.image.url}
-            alt={speaker.name + ' profile picture'}
+            alt={`${speaker.name} profile picture`}
             height={85}
             width={85}
-            objectFit={'cover'}
+            objectFit="cover"
           />
         </div>
         <div>
-          <PosDiv></PosDiv>
+          <PosDiv />
           <p>{speaker.name}</p>
         </div>
       </OuterWrapper>

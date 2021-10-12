@@ -150,15 +150,23 @@ export const getStaticProps: GetStaticProps = async ({
   const companyIds: string[] = speaker.company_relations.map(
     relation => relation.company_id
   );
+
   const speakerCompanies = await getDocsByIDs(
     prismic,
     'my.company.uid',
     companyIds,
     locale
   );
-  const companies: ICompany[] = speakerCompanies.results.map(company =>
-    deconstructCompany(company, locale)
-  );
+
+  console.log(speakerCompanies.results_size);
+
+  let companies: ICompany[] = [];
+
+  if (speakerCompanies.results_size < 8) {
+    companies = speakerCompanies.results.map(company =>
+      deconstructCompany(company, locale)
+    );
+  }
 
   return {
     props: {

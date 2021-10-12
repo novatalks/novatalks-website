@@ -34,6 +34,7 @@
     "coverage": "jest --coverage"
   },
   "dependencies": {
+    "@babel/core": "^7.0.0",
     "@prismicio/client": "^4.0.0",
     "@react-three/drei": "^7.0.6",
     "@react-three/fiber": "^7.0.3",

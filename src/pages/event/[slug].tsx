@@ -215,7 +215,7 @@ export default function Event({
               <EventHeaderImg>
                 <Image
                   src={event.image.url}
-                  alt={event.name + ' header image'}
+                  alt={`${event.name} header image`}
                   layout="fill"
                   objectFit="contain"
                 />
@@ -232,13 +232,9 @@ export default function Event({
                 <EventHeaderShare>
                   <Inverted>
                     <a
-                      href={
-                        'https://www.facebook.com/sharer.php?u=https:www.novatalk.com/event/' +
-                        event.page.uid +
-                        '?imageurl=' +
-                        event.image.url
-                      }
+                      href={`https://www.facebook.com/sharer.php?u=https:www.novatalk.com/event/${event.page.uid}?imageurl=${event.image.url}`}
                       target="_blank"
+                      rel="noreferrer"
                     >
                       <RiFacebookLine color="black" size={50} />
                     </a>
@@ -246,7 +242,7 @@ export default function Event({
                   </Inverted>
                   <SquareButton
                     title="Open on Zoom"
-                    href={'https://www.google.com'}
+                    href="https://www.google.com"
                   />{' '}
                 </EventHeaderShare>
               </EventHeaderContent>
@@ -405,7 +401,7 @@ export const getStaticProps: GetStaticProps = async ({
       event,
       prevEvent: prevEvent ?? null,
       nextEvent: nextEvent ?? null,
-      speakers: speakers,
+      speakers,
       preview,
     },
     revalidate: 60 * 60 * 24, // 24 Horas
