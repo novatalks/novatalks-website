@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ISpeaker } from '../helpers/interfaces';
-import SpeakerCard from './Cards/SpeakerCard';
+import { ISpeaker } from '../../helpers/interfaces';
+import SpeakerCard from './SpeakerCard';
 
-const SpeakerCardsDiv = styled.div`
+const CardsDiv = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -26,11 +26,11 @@ export default function SpeakerCardsSection({ speakers }: Props): JSX.Element {
   return (
     <>
       <StyledP>Speakers:</StyledP>
-      <SpeakerCardsDiv>
+      <CardsDiv>
         {speakers.map(speaker => (
           <SpeakerCard speaker={speaker} />
         ))}
-      </SpeakerCardsDiv>
+      </CardsDiv>
     </>
   );
 }

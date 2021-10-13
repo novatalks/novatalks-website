@@ -31,7 +31,7 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import SquareButton from '../../components/SquareButton';
 import EventTime from '../../components/EventTime';
-import SpeakerCardsSection from '../../components/SpeakerCardsSection';
+import SpeakerCardsSection from '../../components/Cards/SpeakerCardWrapper';
 
 import {
   getPrismicClient,

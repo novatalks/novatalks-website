@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DarkMode } from 'use-dark-mode';
 
 import Prismic from '@prismicio/client';
@@ -38,7 +38,8 @@ import {
   deconstructITeam,
   deconstructMember,
 } from '../helpers/deconstructors';
-import MemberCard from '../components/Cards/MemberCard';
+import MemberCardWrapper from '../components/Cards/MemberCardWrapper';
+import CompanyCardWrapper from '../components/Cards/CompanyCardWrapper';
 
 interface CompaniesPagination {
   next_page: string;
@@ -100,44 +101,20 @@ export default function Companies({
           <HeaderPadding />
           <PaddingContainer>
             <h1>About us</h1>
+            <h2>Our Mission</h2>
+            <p>
+              Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+              bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla{' '}
+            </p>
             <h2>Partners</h2>
-            {partners.map((partner: ICompany) => (
-              <div key={partner.page.uid}>
-                <LinkResolver page={partner}>
-                  <a>
-                    <strong>{partner.name}</strong>
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: RichText.asHtml(partner.description),
-                      }}
-                    />
-                    <footer>
-                      <time>
-                        <FiCalendar color="#BBBBBB" size={20} />
-                        {fmt(
-                          parseISO(partner.page.first_publication_date),
-                          'dd MMM yyyy',
-                          {
-                            locale: pt,
-                          }
-                        )}
-                      </time>
-                    </footer>
-                  </a>
-                </LinkResolver>
-              </div>
-            ))}
+            <CompanyCardWrapper companies={partners} />
             {nextPage && (
               <button type="button" onClick={handleGetMorePartners}>
                 Load more Companies
               </button>
             )}
-            <h2>Members</h2>
-            {members.map((member: IMember) => (
-              <div key={member.page.uid}>
-                <MemberCard member={member} teams={teams} />
-              </div>
-            ))}
+            <h2>Our Team</h2>
+            <MemberCardWrapper members={members} teams={teams} />
           </PaddingContainer>
         </m.main>
       </LazyMotion>
@@ -163,7 +140,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const membersResponse = await prismic.query(
     Prismic.predicates.at('document.type', PageTypeEnum.Member),
     {
-      orderings: '[my.member.name desc]',
+      orderings: '[my.member.name]',
       lang: localePathToPrismic(locale),
     }
   );

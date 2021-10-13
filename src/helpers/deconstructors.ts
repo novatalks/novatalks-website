@@ -158,7 +158,6 @@ export const deconstructMember = (response, locale): interfaces.IMember => {
 };
 
 export const deconstructITeam = (response, locale): interfaces.ITeam => {
-  console.log(response);
   return {
     ...deconstructIPage(response, locale, interfaces.PageTypeEnum.Member),
     name: response.data.name,

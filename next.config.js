@@ -6,7 +6,7 @@ module.exports = {
   },
   basePath: '',
   env: {
-    eventsOnIndex: 2,
+    eventsOnIndex: 8,
     localeStrings: [
       ['pt', 'pt-pt'],
       ['en', 'en-us'],
@@ -19,7 +19,7 @@ module.exports = {
     // This is the default locale you want to be used when visiting
     // a non-locale prefixed path e.g. `/hello`
     defaultLocale: 'en',
-    //localeDetection: false,
+    // localeDetection: false,
   },
   images: {
     domains: ['prismic.io', 'images.prismic.io'],

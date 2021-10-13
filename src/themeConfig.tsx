@@ -17,8 +17,10 @@ const defaultTheme = {
   switchHeight: '40px',
   switchLabelWidth: '100px',
   speakerDivHeight: '70px',
+  memberDivHeight: '98px',
+  companyDivHeight: '250px',
   transitionSpeed: '0.25s',
-  variants: variants,
+  variants,
 };
 
 export const lightTheme = {
@@ -75,7 +77,7 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Raleway', Arial, Roboto, sans-serif;
   }
 
-  button {
+  button, a {
     cursor: pointer;
   }
 
