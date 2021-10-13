@@ -21,4 +21,8 @@ export const Inverted = styled.span`
 export const ImgBGWrapper = styled.div`
   background-color: ${({ theme }) => theme.body};
 `;
+
+export const ImgBGWrapperA = styled.a`
+  background-color: ${({ theme }) => theme.body};
+`;
 // width: 1170px;

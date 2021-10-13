@@ -7,22 +7,22 @@ import parseISO from 'date-fns/parseISO';
 import { RiCalendarEventLine, RiUserFill } from 'react-icons/ri';
 import { useTheme } from 'styled-components';
 import { IEventThumb } from '../../helpers/interfaces';
-import { ImgBGWrapper } from '../../assets/DefaultStyles';
+import { ImgBGWrapperA } from '../../assets/DefaultStyles';
 import { LinkResolver } from '../../helpers/prismic';
+import SquareButton from '../SquareButton';
 
 const Date = styled.time`
   position: absolute;
   top: -30px;
 `;
+
 const TextDiv = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
   padding: 15px;
-  > * {
-    width: max-content;
-  }
 `;
 
 const OuterTextDiv = styled.div`
@@ -76,7 +76,7 @@ const OuterWrapper = styled.div`
     ${({ theme }) => theme.text};
   box-sizing: border-box;
   overflow: hidden;
-  > ${ImgBGWrapper} {
+  > ${ImgBGWrapperA} {
     max-width: ${({ theme }) => {
       return `${
         parseInt(theme.eventDivHeight, 10) -
@@ -135,14 +135,11 @@ export default function EventCard({ event }: Props): JSX.Element {
         <OuterTextDiv>
           <TextDiv>
             <p>{event.description}</p>
-            <p>
-              <RiCalendarEventLine color={theme.text} size={20} />
-              {fmt(parseISO(event.startTime), 'dd MMM yyyy', {
-                locale: pt,
-              })}
-            </p>
+            <LinkResolver page={event}>
+              <SquareButton title="See Event" target="" />
+            </LinkResolver>
           </TextDiv>
-          <ImgBGWrapper>
+          <ImgBGWrapperA>
             <LinkResolver page={event}>
               <Image
                 src={event.image.url}
@@ -152,16 +149,18 @@ export default function EventCard({ event }: Props): JSX.Element {
                 objectFit="contain"
               />
             </LinkResolver>
-          </ImgBGWrapper>
+          </ImgBGWrapperA>
           <TextDiv>
             <h3>{event.name}</h3>
-            <p>{event.description}</p>
+            <p>
+              <RiCalendarEventLine color={theme.text} size={20} />
+              {fmt(parseISO(event.startTime), 'dd MMM yyyy', {
+                locale: pt,
+              })}
+            </p>
           </TextDiv>
         </OuterTextDiv>
       </OuterWrapper>
-      <footer>
-        <RiUserFill color={theme.text} size={20} />
-      </footer>
     </OutMostDiv>
   );
 }
