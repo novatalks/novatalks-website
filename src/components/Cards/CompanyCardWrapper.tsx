@@ -7,7 +7,7 @@ import CompanyCard from './CompanyCard';
 const CardsDiv = styled.div`
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   gap: 10px;
   > * {
     margin: 0;

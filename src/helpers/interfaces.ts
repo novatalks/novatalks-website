@@ -39,6 +39,10 @@ export interface INameDescription {
     text: string;
   }[];
 }
+export interface INameDescriptionStr {
+  name: string;
+  description: string;
+}
 
 export interface IImage {
   image: {
@@ -51,6 +55,7 @@ export interface IImage {
 
 // ABSTRACTOR ELEMENTS
 
+export interface IBasePageStr extends IPage, INameDescriptionStr {}
 export interface IBasePage extends IPage, INameDescription {}
 export interface IBaseImagePage extends IBasePage, IImage {}
 
@@ -58,12 +63,14 @@ export interface IBaseImagePage extends IBasePage, IImage {}
 
 export type IHome = IBasePage;
 
-export interface IEventThumb extends IBaseImagePage {
+export interface IEventThumb extends IBasePageStr, IImage {
   startTime?: string;
   endTime?: string;
 }
 
-export interface IEvent extends IEventThumb {
+export interface IEvent extends IBaseImagePage {
+  startTime?: string;
+  endTime?: string;
   speakersIds: string[];
   data: {
     content: {

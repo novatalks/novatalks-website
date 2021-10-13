@@ -18,4 +18,7 @@ export const Inverted = styled.span`
   ${({ theme }) => (theme.isDarkMode ? 'filter: invert(100%);' : '')};
 `;
 
+export const ImgBGWrapper = styled.div`
+  background-color: ${({ theme }) => theme.body};
+`;
 // width: 1170px;

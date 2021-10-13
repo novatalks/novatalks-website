@@ -19,6 +19,7 @@ const defaultTheme = {
   speakerDivHeight: '70px',
   memberDivHeight: '98px',
   companyDivHeight: '250px',
+  eventDivHeight: '200px',
   transitionSpeed: '0.25s',
   variants,
 };
@@ -87,6 +88,11 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 300;
     font-size: 2rem;
     padding: 30px 0 20px 0;
+  }
+
+  h3{
+    font-weight: 300;
+    font-size: 1.7rem;
   }
 
   button, a {

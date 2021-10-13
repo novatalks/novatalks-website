@@ -58,7 +58,7 @@ interface Props {
   darkMode: DarkMode;
 }
 
-export default function Companies({
+export default function About({
   partnersPagination: { next_page, results },
   members,
   teams,
@@ -113,7 +113,7 @@ export default function Companies({
               existem e vão dar que falar.
             </p>
 
-            <h2>Partners</h2>
+            <h2>Our Partners</h2>
             <CompanyCardWrapper companies={partners} />
             {nextPage && (
               <button type="button" onClick={handleGetMorePartners}>

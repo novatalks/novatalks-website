@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import * as interfaces from './interfaces';
+import { trimSentenceAtLen } from './utils';
 
 // BASIC ELEMENTS
 
@@ -85,13 +86,19 @@ export const deconstructEventThumb = (
   response,
   locale
 ): interfaces.IEventThumb => {
+  const cutDescription =
+    response.data.description != null
+      ? trimSentenceAtLen(response.data.description, 100)
+      : null;
+
   return {
     ...deconstructIBaseImagePage(
       response,
       locale,
       interfaces.PageTypeEnum.Event
     ),
-    ...deconstructINameDescription(response),
+    name: response.data.name,
+    description: cutDescription,
     startTime: response.data.starttime,
     endTime: response.data.endtime,
   };
@@ -109,7 +116,14 @@ export const deconstructEvent = (response, locale): interfaces.IEvent => {
       : speakerIds;
 
   return {
-    ...deconstructEventThumb(response, locale),
+    ...deconstructIBaseImagePage(
+      response,
+      locale,
+      interfaces.PageTypeEnum.Event
+    ),
+    ...deconstructINameDescription(response),
+    startTime: response.data.starttime,
+    endTime: response.data.endtime,
     speakersIds: speakerIds,
     data: {
       content: response.data.content,

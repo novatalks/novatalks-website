@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { ICompany } from '../../helpers/interfaces';
 import { LinkResolver } from '../../helpers/prismic';
+import { ImgBGWrapper } from '../../assets/DefaultStyles';
 
 const TextDiv = styled.div`
   position: absolute;
@@ -18,10 +19,6 @@ const TextDiv = styled.div`
       2 * parseInt(theme.defaultBorderLight, 10)
     }px`;
   }};
-`;
-
-const ImgWrapper = styled.div`
-  background-color: ${({ theme }) => theme.body};
 `;
 
 const OuterWrapper = styled.a`
@@ -78,7 +75,7 @@ export default function CompanyCard({ company }: Props): JSX.Element {
   return (
     <LinkResolver page={company} key={company.page.uid}>
       <OuterWrapper>
-        <ImgWrapper>
+        <ImgBGWrapper>
           <Image
             src={company.image.url}
             alt={`${company.name} picture`}
@@ -86,7 +83,7 @@ export default function CompanyCard({ company }: Props): JSX.Element {
             width={248}
             objectFit="cover"
           />
-        </ImgWrapper>
+        </ImgBGWrapper>
         <TextDiv>{company.name}</TextDiv>
       </OuterWrapper>
     </LinkResolver>
