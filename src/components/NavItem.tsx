@@ -24,7 +24,10 @@ interface ButtonProps {
   text: string;
 }
 
-export default function NavItem({ href = '/', text = '' }: ButtonProps) {
+export default function NavItem({
+  href = '/',
+  text = '',
+}: ButtonProps): JSX.Element {
   return (
     <StyledLi>
       <Link href={href}>

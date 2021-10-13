@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import * as interfaces from './interfaces';
 
 // BASIC ELEMENTS
@@ -71,9 +72,12 @@ export const deconstructHome = (response, locale): interfaces.IHome => {
 
 export const deconstructCompany = (response, locale): interfaces.ICompany => {
   return {
-    ...deconstructIPage(response, locale, interfaces.PageTypeEnum.Company),
-    ...deconstructINameDescription(response),
-    ...deconstructIImage(response),
+    ...deconstructIBaseImagePage(
+      response,
+      locale,
+      interfaces.PageTypeEnum.Company
+    ),
+    ispartner: response.data.ispartner,
   };
 };
 
@@ -130,5 +134,33 @@ export const deconstructSpeaker = (response, locale): interfaces.ISpeaker => {
     ...deconstructINameDescription(response),
     ...deconstructIImage(response),
     company_relations: companyRelations,
+  };
+};
+
+export const deconstructMember = (response, locale): interfaces.IMember => {
+  // map member team relations
+  const teamRelations: interfaces.ITeamRelations[] = [];
+  response.data.body.map((item, index) => {
+    if (item.slice_type === 'team_relation') {
+      teamRelations[index] = {
+        team_id: item.primary.team.uid,
+      };
+    }
+  });
+
+  return {
+    ...deconstructIPage(response, locale, interfaces.PageTypeEnum.Member),
+    ...deconstructIImage(response),
+    name: response.data.name,
+    isActiveMember: response.data.is_active_member,
+    team_relations: teamRelations,
+  };
+};
+
+export const deconstructITeam = (response, locale): interfaces.ITeam => {
+  console.log(response);
+  return {
+    ...deconstructIPage(response, locale, interfaces.PageTypeEnum.Member),
+    name: response.data.name,
   };
 };

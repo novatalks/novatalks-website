@@ -6,12 +6,14 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "cSpell.words": [
     "Avenir",
-    "GLTF",
-    "Thalles",
-    "Toon",
     "drei",
     "endtime",
+    "GLTF",
+    "isactivemember",
+    "ispartner",
     "preconnect",
-    "starttime"
+    "starttime",
+    "Thalles",
+    "Toon"
   ]
 }

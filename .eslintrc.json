@@ -28,6 +28,11 @@
   "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "rules": {
     "camelcase": "off",
+    "no-underscore-dangle": "off",
+    "no-shadow": "off",
+    "no-console": "off",
+    "array-callback-return": "off",
+    "react/no-danger": "off",
     "import/no-duplicates": "off",
     "react/jsx-props-no-spreading": "off",
     "prettier/prettier": "error",

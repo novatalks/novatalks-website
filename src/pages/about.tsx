@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { DarkMode } from 'use-dark-mode';
 
@@ -22,9 +23,22 @@ import {
   localePathToPrismic,
   rootIPageFromLocale,
   LinkResolver,
+  getDocsByIDs,
 } from '../helpers/prismic';
-import { PageTypeEnum, IPage, ICompany } from '../helpers/interfaces';
-import { deconstructCompany } from '../helpers/deconstructors';
+import {
+  PageTypeEnum,
+  IPage,
+  ICompany,
+  IMember,
+  ITeam,
+  ITeamRelations,
+} from '../helpers/interfaces';
+import {
+  deconstructCompany,
+  deconstructITeam,
+  deconstructMember,
+} from '../helpers/deconstructors';
+import MemberCard from '../components/Cards/MemberCard';
 
 interface CompaniesPagination {
   next_page: string;
@@ -32,18 +46,22 @@ interface CompaniesPagination {
 }
 
 interface Props {
-  companiesPagination: CompaniesPagination;
+  partnersPagination: CompaniesPagination;
+  members: IMember[];
+  teams: ITeam[];
   pageType: IPage;
   darkMode: DarkMode;
 }
 
 export default function Companies({
-  companiesPagination: { next_page, results },
+  partnersPagination: { next_page, results },
+  members,
+  teams,
   pageType,
   darkMode,
 }: Props): JSX.Element {
   const theme = useTheme();
-  const [companies, setCompanies] = useState([]);
+  const [partners, setCompanies] = useState([]);
   const [nextPage, setNextPage] = useState(next_page);
 
   // trigger refresh when locale changes
@@ -53,19 +71,19 @@ export default function Companies({
   }, [results, next_page]);
 
   // fetch more events
-  async function handleGetMoreCompanies(): Promise<void> {
+  async function handleGetMorePartners(): Promise<void> {
     const response = await (await fetch(nextPage)).json();
-    const newCompanies: ICompany[] = response.results.map(newCompany =>
+    const newPartners: ICompany[] = response.results.map(newCompany =>
       deconstructCompany(newCompany, pageType.page.currentLang)
     );
-    setCompanies([...companies, ...newCompanies]);
+    setCompanies([...partners, ...newPartners]);
     setNextPage(response.next_page);
   }
 
   return (
     <>
       <Head>
-        <title>Companies | Novatalks</title>
+        <title>About Us | Novatalks</title>
       </Head>
 
       <Header title="Novatalks" pageType={pageType} darkMode={darkMode} />
@@ -81,21 +99,23 @@ export default function Companies({
         >
           <HeaderPadding />
           <PaddingContainer>
-            {companies.map((company: ICompany) => (
-              <div key={company.page.uid}>
-                <LinkResolver page={company}>
+            <h1>About us</h1>
+            <h2>Partners</h2>
+            {partners.map((partner: ICompany) => (
+              <div key={partner.page.uid}>
+                <LinkResolver page={partner}>
                   <a>
-                    <strong>{company.name}</strong>
+                    <strong>{partner.name}</strong>
                     <p
                       dangerouslySetInnerHTML={{
-                        __html: RichText.asHtml(company.description),
+                        __html: RichText.asHtml(partner.description),
                       }}
                     />
                     <footer>
                       <time>
                         <FiCalendar color="#BBBBBB" size={20} />
                         {fmt(
-                          parseISO(company.page.first_publication_date),
+                          parseISO(partner.page.first_publication_date),
                           'dd MMM yyyy',
                           {
                             locale: pt,
@@ -108,14 +128,19 @@ export default function Companies({
               </div>
             ))}
             {nextPage && (
-              <button type="button" onClick={handleGetMoreCompanies}>
+              <button type="button" onClick={handleGetMorePartners}>
                 Load more Companies
               </button>
             )}
+            <h2>Members</h2>
+            {members.map((member: IMember) => (
+              <div key={member.page.uid}>
+                <MemberCard member={member} teams={teams} />
+              </div>
+            ))}
           </PaddingContainer>
         </m.main>
       </LazyMotion>
-
       <Footer />
     </>
   );
@@ -123,8 +148,11 @@ export default function Companies({
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const prismic = getPrismicClient();
-  const companiesResponse = await prismic.query(
-    Prismic.predicates.at('document.type', PageTypeEnum.Company),
+  const partnersResponse = await prismic.query(
+    [
+      Prismic.predicates.at('document.type', PageTypeEnum.Company),
+      Prismic.Predicates.at('my.company.ispartner', true),
+    ],
     {
       // fetch: ['company.name', 'company.description'],
       pageSize: process.env.eventsOnIndex,
@@ -132,18 +160,48 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     }
   );
 
-  const companies: ICompany[] = companiesResponse.results.map(company =>
-    deconstructCompany(company, locale)
+  const membersResponse = await prismic.query(
+    Prismic.predicates.at('document.type', PageTypeEnum.Member),
+    {
+      orderings: '[my.member.name desc]',
+      lang: localePathToPrismic(locale),
+    }
   );
 
-  const pageType = rootIPageFromLocale(locale, PageTypeEnum.RootCompanies);
+  const partners: ICompany[] = partnersResponse.results.map(partner =>
+    deconstructCompany(partner, locale)
+  );
+
+  const members: IMember[] = membersResponse.results.map(member =>
+    deconstructMember(member, locale)
+  );
+
+  const teamIds: string[] = members.flatMap(member =>
+    member.team_relations.map(team => team.team_id)
+  );
+  const teamIdsUnique: string[] = Array.from(new Set(teamIds));
+
+  const teamsResults = await getDocsByIDs(
+    prismic,
+    'my.team.uid',
+    teamIdsUnique,
+    locale
+  );
+
+  const teams: ITeam[] = teamsResults.results.map(member =>
+    deconstructITeam(member, locale)
+  );
+
+  const pageType = rootIPageFromLocale(locale, PageTypeEnum.RootAboutUs);
 
   return {
     props: {
-      companiesPagination: {
-        results: companies,
-        next_page: companiesResponse.next_page,
+      partnersPagination: {
+        results: partners,
+        next_page: partnersResponse.next_page,
       },
+      members,
+      teams,
       pageType,
     },
   };

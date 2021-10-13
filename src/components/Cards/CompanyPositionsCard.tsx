@@ -83,7 +83,7 @@ interface CompanyPositionsCardProps {
 export default function CompanyCard({
   company,
   company_relation,
-}: CompanyPositionsCardProps) {
+}: CompanyPositionsCardProps): JSX.Element {
   return (
     <Card key={company.page.uid}>
       <Decoration />

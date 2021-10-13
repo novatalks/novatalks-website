@@ -72,7 +72,7 @@ export default function SquareButton({
   alt = '',
   rel = 'noreferrer',
   target = '_blank',
-}: Props) {
+}: Props): JSX.Element {
   return (
     <ButtonFlat>
       <ButtonFlatA

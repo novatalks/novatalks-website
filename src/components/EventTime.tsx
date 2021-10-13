@@ -34,7 +34,11 @@ interface Props {
   lang: string;
 }
 
-export default function EventTime({ startTime, endTime, lang }: Props) {
+export default function EventTime({
+  startTime,
+  endTime,
+  lang,
+}: Props): JSX.Element {
   const startDate: Date = parseISO(startTime);
   const endDate: Date = parseISO(endTime);
   const duration: Duration = intervalToDuration({

@@ -1,14 +1,17 @@
 import { AlternateLanguage } from '@prismicio/client/types/documents';
 
-//Enum should be same as Prismic
+// Enum should be same as Prismic
 export enum PageTypeEnum {
   Company = 'company',
   Event = 'event',
+  Member = 'member',
   Speaker = 'speaker',
-  Root = 'root',
+  Team = 'team',
   _Unset = 'unset',
+  Root = 'root',
   RootHome = 'home',
   RootCompanies = 'companies',
+  RootAboutUs = 'about',
   RootSpeakers = 'speakers',
 }
 
@@ -53,7 +56,7 @@ export interface IBaseImagePage extends IBasePage, IImage {}
 
 // PAGE ELEMENTS
 
-export interface IHome extends IBasePage {}
+export type IHome = IBasePage;
 
 export interface IEventThumb extends IBaseImagePage {
   startTime?: string;
@@ -79,8 +82,24 @@ export interface ICompanyRelations {
   }[];
 }
 
-export interface ICompany extends IBaseImagePage {}
+export interface ICompany extends IBaseImagePage {
+  ispartner: boolean;
+}
 
 export interface ISpeaker extends IBaseImagePage {
   company_relations: ICompanyRelations[];
+}
+
+export interface ITeamRelations {
+  team_id: string;
+}
+
+export interface IMember extends IPage, IImage {
+  name: string;
+  isActiveMember: boolean;
+  team_relations: ITeamRelations[];
+}
+
+export interface ITeam extends IPage {
+  name: string;
 }

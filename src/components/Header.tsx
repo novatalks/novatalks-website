@@ -57,7 +57,11 @@ interface Props {
   darkMode: DarkMode;
 }
 
-export default function Header({ pageType, darkMode }: Props) {
+export default function Header({
+  title,
+  pageType,
+  darkMode,
+}: Props): JSX.Element {
   return (
     <OuterWrapper>
       <HeaderContainer>
@@ -79,13 +83,13 @@ export default function Header({ pageType, darkMode }: Props) {
             <NavbarList>
               <NavItem text="Events" href="/" />
               <NavItem text="Speakers" href="/speakers" />
-              <NavItem text="Partners" href="/companies" />
+              <NavItem text="About Us" href="/about" />
             </NavbarList>
 
             <SwitchersContainer>
               <Switcher darkMode={darkMode} />
 
-              {(pageType.page.pageTypeEnum == PageTypeEnum.Root ||
+              {(pageType.page.pageTypeEnum === PageTypeEnum.Root ||
                 (pageType.page.alternativeLangs &&
                   pageType.page.alternativeLangs.length > 0)) && (
                 <SwitcherLang pageType={{ page: pageType.page }} />

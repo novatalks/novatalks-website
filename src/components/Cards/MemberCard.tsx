@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import { ISpeaker } from '../../helpers/interfaces';
+import { IMember, ITeam, ITeamRelations } from '../../helpers/interfaces';
 import { LinkResolver } from '../../helpers/prismic';
 
 const OuterWrapper = styled.a`
@@ -68,17 +68,18 @@ const PosDiv = styled.div`
 `;
 
 interface Props {
-  speaker: ISpeaker;
+  member: IMember;
+  teams: ITeam[];
 }
 
-export default function SpeakerCard({ speaker }: Props): JSX.Element {
+export default function MemberCard({ member, teams }: Props): JSX.Element {
   return (
-    <LinkResolver page={speaker}>
-      <OuterWrapper key={speaker.page.uid}>
+    <LinkResolver page={member}>
+      <OuterWrapper key={member.page.uid}>
         <div>
           <Image
-            src={speaker.image.url}
-            alt={`${speaker.name} profile picture`}
+            src={member.image.url}
+            alt={`${member.name} profile picture`}
             height={85}
             width={85}
             objectFit="cover"
@@ -86,8 +87,17 @@ export default function SpeakerCard({ speaker }: Props): JSX.Element {
         </div>
         <div>
           <PosDiv />
-          <p>{speaker.name}</p>
+          <p>{member.name}</p>
         </div>
+        {member.team_relations.map((teamRelation: ITeamRelations) => {
+          return teams.some(team => team.page.uid === teamRelation.team_id) ? (
+            <p>
+              {teams.find(team => team.page.uid === teamRelation.team_id).name}
+            </p>
+          ) : (
+            <></>
+          );
+        })}
       </OuterWrapper>
     </LinkResolver>
   );
