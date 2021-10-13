@@ -11,7 +11,7 @@ import { FiCalendar, FiUser } from 'react-icons/fi';
 import Head from 'next/head';
 import { RichText } from 'prismic-dom';
 import { LazyMotion, domAnimation, m } from 'framer-motion';
-import styled, { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components';
 
 import {
   PaddingContainer,

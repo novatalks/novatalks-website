@@ -20,6 +20,8 @@ const defaultTheme = {
   memberDivHeight: '98px',
   companyDivHeight: '250px',
   eventDivHeight: '200px',
+  eventCardSectionWidth: '86vw',
+  eventCardWidth: '43vw',
   transitionSpeed: '0.25s',
   variants,
 };

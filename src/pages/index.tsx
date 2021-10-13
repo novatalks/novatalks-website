@@ -116,13 +116,13 @@ export default function Home({
                 __html: RichText.asHtml(home.description),
               }}
             />
-            <EventCardsWrapper events={events} />
-            {nextPage && (
-              <button type="button" onClick={handleGetMoreEvents}>
-                Load more events
-              </button>
-            )}
           </PaddingContainer>
+          <EventCardsWrapper events={events} />
+          {nextPage && (
+            <button type="button" onClick={handleGetMoreEvents}>
+              Load more events
+            </button>
+          )}
         </m.main>
       </LazyMotion>
       <Footer />
@@ -160,7 +160,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     deconstructEventThumb(event, locale)
   );
 
-  console.log(events);
+  // removeeer
   events = [...events, ...events, ...events];
 
   return {

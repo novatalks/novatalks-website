@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { pt } from 'date-fns/locale';
 import fmt from 'date-fns/format';
 import parseISO from 'date-fns/parseISO';
-import { FiCalendar, FiUser } from 'react-icons/fi';
-import { RichText } from 'prismic-dom';
+import { RiCalendarEventLine, RiUserFill } from 'react-icons/ri';
+import { useTheme } from 'styled-components';
 import { IEventThumb } from '../../helpers/interfaces';
 import { ImgBGWrapper } from '../../assets/DefaultStyles';
 import { LinkResolver } from '../../helpers/prismic';
@@ -20,26 +20,63 @@ const TextDiv = styled.div`
   display: flex;
   flex-flow: row wrap;
   padding: 15px;
+  > * {
+    width: max-content;
+  }
 `;
-const TextOuterDiv = styled.div`
+
+const OuterTextDiv = styled.div`
   width: 100%;
-  display: flex;
-  p {
-    font: 300 1.2rem 'Raleway', sans-serif;
-    text-align: center;
+  height: 100%;
+  display: grid;
+  transform: translateX(
+    calc(
+      ${({ theme }) => {
+          return `${
+            parseInt(theme.eventDivHeight, 10) -
+            2 * parseInt(theme.defaultBorderLight, 10)
+          }px`;
+        }} - 100%
+    )
+  );
+  transition: transform ease ${({ theme }) => theme.transitionSpeed};
+  grid-template-columns: 1fr ${({ theme }) => {
+      return `${
+        parseInt(theme.eventDivHeight, 10) -
+        2 * parseInt(theme.defaultBorderLight, 10)
+      }px`;
+    }} 1fr;
+  > div {
+    height: ${({ theme }) => {
+      return `${
+        parseInt(theme.eventDivHeight, 10) -
+        2 * parseInt(theme.defaultBorderLight, 10)
+      }px`;
+    }};
+  }
+  > :nth-child(2) {
+    width: 196px;
+    height: 196px;
+    right: 0;
+  }
+  > :nth-child(3) {
+    position: absolute;
+    left: 100%;
+  }
+  > :nth-child(3),
+  > :nth-child(1) {
+    width: calc(42vw - 200px);
   }
 `;
 
 const OuterWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
+  position: relative;
   height: ${({ theme }) => theme.eventDivHeight};
   border: ${({ theme }) => theme.defaultBorderLight} solid
     ${({ theme }) => theme.text};
   box-sizing: border-box;
-
-  > :first-child {
+  overflow: hidden;
+  > ${ImgBGWrapper} {
     max-width: ${({ theme }) => {
       return `${
         parseInt(theme.eventDivHeight, 10) -
@@ -67,10 +104,14 @@ const OuterWrapper = styled.div`
   }
 
   &:hover {
-    > :first-child {
-      filter: unset;
+    > div {
+      transform: translateX(0);
     }
   }
+`;
+
+const OutMostDiv = styled.div`
+  width: 100%;
 `;
 
 interface Props {
@@ -78,34 +119,49 @@ interface Props {
 }
 
 export default function EventCard({ event }: Props): JSX.Element {
+  const theme = useTheme();
+
   return (
-    <div>
+    <OutMostDiv>
       <Date>
-        <FiCalendar color="#BBBBBB" size={20} />
-        {fmt(parseISO(event.startTime), 'dd MMM yyyy', {
-          locale: pt,
-        })}
+        <p>
+          <RiCalendarEventLine color={theme.text} size={20} />
+          {fmt(parseISO(event.startTime), 'dd MMM yyyy', {
+            locale: pt,
+          })}
+        </p>
       </Date>
       <OuterWrapper key={event.page.uid}>
-        <LinkResolver page={event}>
+        <OuterTextDiv>
+          <TextDiv>
+            <p>{event.description}</p>
+            <p>
+              <RiCalendarEventLine color={theme.text} size={20} />
+              {fmt(parseISO(event.startTime), 'dd MMM yyyy', {
+                locale: pt,
+              })}
+            </p>
+          </TextDiv>
           <ImgBGWrapper>
-            <Image
-              src={event.image.url}
-              alt={`${event.name} picture`}
-              height={248}
-              width={248}
-              objectFit="cover"
-            />
+            <LinkResolver page={event}>
+              <Image
+                src={event.image.url}
+                alt={`${event.name} picture`}
+                height={248}
+                width={248}
+                objectFit="contain"
+              />
+            </LinkResolver>
           </ImgBGWrapper>
-        </LinkResolver>
-        <TextDiv>
-          <h3>{event.name}</h3>
-          <p>{event.description}</p>
-        </TextDiv>
-        <footer>
-          <FiUser color="#BBBBBB" size={20} />
-        </footer>
+          <TextDiv>
+            <h3>{event.name}</h3>
+            <p>{event.description}</p>
+          </TextDiv>
+        </OuterTextDiv>
       </OuterWrapper>
-    </div>
+      <footer>
+        <RiUserFill color={theme.text} size={20} />
+      </footer>
+    </OutMostDiv>
   );
 }

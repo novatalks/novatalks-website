@@ -6,11 +6,13 @@ import EventCard from './EventCard';
 
 const Container = styled.div`
   min-height: 100vh;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 100px 0;
+  padding: 100px 8%; //width is thus 84vw
+  > * {
+    width: 100%;
+  }
 `;
 
 const Timeline = styled.div`
