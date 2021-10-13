@@ -5,6 +5,10 @@ export const PaddingContainer = styled.div`
   padding: 0 10%;
 `;
 
+export const TopSpacedDiv = styled.div`
+  padding-top: 30px;
+`;
+
 export const HeaderPadding = styled.div`
   height: ${({ theme }) => theme.headerHeight};
   width: 100%;

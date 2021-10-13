@@ -76,6 +76,18 @@ export const GlobalStyles = createGlobalStyle`
   h1,h2,h3,h4,h5,h6 {
     font-family: 'Raleway', Arial, Roboto, sans-serif;
   }
+  
+  h1{
+    font-weight: 300;
+    font-size: 3rem;
+    padding: 20px 0 10px 0;
+  }
+
+  h2{
+    font-weight: 300;
+    font-size: 2rem;
+    padding: 30px 0 20px 0;
+  }
 
   button, a {
     cursor: pointer;

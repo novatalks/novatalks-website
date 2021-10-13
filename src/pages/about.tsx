@@ -13,7 +13,11 @@ import { RichText } from 'prismic-dom';
 import { LazyMotion, domAnimation, m } from 'framer-motion';
 import styled, { useTheme } from 'styled-components';
 
-import { PaddingContainer, HeaderPadding } from '../assets/DefaultStyles';
+import {
+  PaddingContainer,
+  HeaderPadding,
+  TopSpacedDiv,
+} from '../assets/DefaultStyles';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -103,9 +107,12 @@ export default function Companies({
             <h1>About us</h1>
             <h2>Our Mission</h2>
             <p>
-              Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-              bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla{' '}
+              Com a NOVATalks pretendemos levar-te a debater e reflectir para
+              além do curso e partilhar com o mundo a tua visão do futuro, bem
+              como dar-te a conhecer todo um universo de tecnologias que já
+              existem e vão dar que falar.
             </p>
+
             <h2>Partners</h2>
             <CompanyCardWrapper companies={partners} />
             {nextPage && (
@@ -113,6 +120,7 @@ export default function Companies({
                 Load more Companies
               </button>
             )}
+
             <h2>Our Team</h2>
             <MemberCardWrapper members={members} teams={teams} />
           </PaddingContainer>
