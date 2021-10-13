@@ -87,9 +87,7 @@ export default function CompanyCard({ company }: Props): JSX.Element {
             objectFit="cover"
           />
         </ImgWrapper>
-        <TextDiv>
-          <strong>{company.name}</strong>
-        </TextDiv>
+        <TextDiv>{company.name}</TextDiv>
       </OuterWrapper>
     </LinkResolver>
   );

@@ -404,6 +404,6 @@ export const getStaticProps: GetStaticProps = async ({
       speakers,
       preview,
     },
-    revalidate: 60 * 60 * 24, // 24 Horas
+    // revalidate: 60 * 60 * 24, // 24 Horas
   };
 };

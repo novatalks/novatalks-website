@@ -126,6 +126,6 @@ export const getStaticProps: GetStaticProps = async ({
       company,
       preview,
     },
-    revalidate: 60 * 60 * 24, // 24 Horas
+    // revalidate: 60 * 60 * 24, // 24 Horas
   };
 };
