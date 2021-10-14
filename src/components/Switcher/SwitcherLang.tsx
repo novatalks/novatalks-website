@@ -90,7 +90,7 @@ interface Props {
   pageType: IPage;
 }
 
-export default function Switcher({ pageType }: Props) {
+export default function Switcher({ pageType }: Props): JSX.Element {
   const [isChecked, setIsChecked] = useState(
     localePos(pageType.page.currentLang) !== 0
   );

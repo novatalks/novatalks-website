@@ -86,7 +86,6 @@ const Timeline = styled.div`
       top: -30px;
     }
     ul li:hover::before {
-      background-color: aqua;
       background-color: ${({ theme }) => theme.text};
     }
   }

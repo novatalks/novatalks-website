@@ -66,7 +66,7 @@ export const deconstructIBaseImagePage = (
 
 export const deconstructHome = (response, locale): interfaces.IHome => {
   return {
-    ...deconstructIPage(response, locale, interfaces.PageTypeEnum.Company),
+    ...deconstructIPage(response, locale, interfaces.PageTypeEnum.RootHome),
     ...deconstructINameDescription(response),
   };
 };
