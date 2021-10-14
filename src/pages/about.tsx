@@ -4,20 +4,12 @@ import React, { useEffect, useState } from 'react';
 import { DarkMode } from 'use-dark-mode';
 
 import Prismic from '@prismicio/client';
-import { pt } from 'date-fns/locale';
-import fmt from 'date-fns/format';
-import parseISO from 'date-fns/parseISO';
-import { FiCalendar, FiUser } from 'react-icons/fi';
+
 import Head from 'next/head';
-import { RichText } from 'prismic-dom';
 import { LazyMotion, domAnimation, m } from 'framer-motion';
 import { useTheme } from 'styled-components';
 
-import {
-  PaddingContainer,
-  HeaderPadding,
-  TopSpacedDiv,
-} from '../assets/DefaultStyles';
+import { PaddingContainer, HeaderPadding } from '../assets/DefaultStyles';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -26,7 +18,6 @@ import {
   getPrismicClient,
   localePathToPrismic,
   rootIPageFromLocale,
-  LinkResolver,
   getDocsByIDs,
 } from '../helpers/prismic';
 import {
@@ -35,15 +26,14 @@ import {
   ICompany,
   IMember,
   ITeam,
-  ITeamRelations,
 } from '../helpers/interfaces';
 import {
   deconstructCompany,
   deconstructITeam,
   deconstructMember,
 } from '../helpers/deconstructors';
-import MemberCardWrapper from '../components/Cards/MemberCardWrapper';
-import CompanyCardWrapper from '../components/Cards/CompanyCardWrapper';
+import { MemberCardWrapper } from '../components/Cards/MemberCardWrapper';
+import { CompanyCardWrapper } from '../components/Cards/CompanyCardWrapper';
 
 interface CompaniesPagination {
   next_page: string;

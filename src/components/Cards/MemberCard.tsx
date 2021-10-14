@@ -79,7 +79,7 @@ interface Props {
   teams: ITeam[];
 }
 
-export default function MemberCard({ member, teams }: Props): JSX.Element {
+export function MemberCard({ member, teams }: Props): JSX.Element {
   return (
     <OuterWrapper key={member.page.uid}>
       <div>

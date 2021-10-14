@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { IEventThumb } from '../../helpers/interfaces';
-import EventCard from './EventCard';
+import { EventCard } from './EventCard';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -95,7 +95,7 @@ interface Props {
   events: IEventThumb[];
 }
 
-export default function EventCardsWrapper({ events }: Props): JSX.Element {
+export function EventCardWrapper({ events }: Props): JSX.Element {
   return (
     <>
       <Container>

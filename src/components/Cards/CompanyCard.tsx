@@ -71,7 +71,7 @@ interface Props {
   company: ICompany;
 }
 
-export default function CompanyCard({ company }: Props): JSX.Element {
+export function CompanyCard({ company }: Props): JSX.Element {
   return (
     <LinkResolver page={company} key={company.page.uid}>
       <OuterWrapper>

@@ -8,11 +8,11 @@ import Head from 'next/head';
 import { pt } from 'date-fns/locale';
 import fmt from 'date-fns/format';
 import parseISO from 'date-fns/parseISO';
-import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
+import { FiCalendar } from 'react-icons/fi';
 import { useRouter } from 'next/router';
 
 import Header from '../../components/Header';
-import CompanyPositionsCard from '../../components/Cards/CompanyPositionsCard';
+import { CompanyPositionsCard } from '../../components/Cards/CompanyPositionsCard';
 import Footer from '../../components/Footer';
 import { PaddingContainer, HeaderPadding } from '../../assets/DefaultStyles';
 
@@ -40,7 +40,7 @@ export default function Speaker({
   companies,
   preview,
   darkMode,
-}: SpeakerProps) {
+}: SpeakerProps): JSX.Element {
   const router = useRouter();
 
   if (router.isFallback) {

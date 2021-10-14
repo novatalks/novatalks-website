@@ -1,34 +1,21 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
-import Prismic from '@prismicio/client';
+
 import { RichText } from 'prismic-dom';
 import { DarkMode } from 'use-dark-mode';
 import Div100vh from 'react-div-100vh';
 import { LazyMotion, domAnimation, m } from 'framer-motion';
-import { pt } from 'date-fns/locale';
-import fmt from 'date-fns/format';
-import parseISO from 'date-fns/parseISO';
-import { FiCalendar, FiUser } from 'react-icons/fi';
 import styled, { useTheme } from 'styled-components';
 
-import { PaddingContainer, HeaderPadding } from '../assets/DefaultStyles';
+import { HeaderPadding } from '../assets/DefaultStyles';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ThreeJSAnim from '../components/ThreeJS/ThreeJSAnim';
 
-import {
-  getPrismicClient,
-  localePathToPrismic,
-  rootIPageFromLocale,
-  LinkResolver,
-} from '../helpers/prismic';
-import { PageTypeEnum, IHome, IEventThumb } from '../helpers/interfaces';
-import {
-  deconstructEventThumb,
-  deconstructHome,
-} from '../helpers/deconstructors';
+import { getPrismicClient, localePathToPrismic } from '../helpers/prismic';
+import { PageTypeEnum, IHome } from '../helpers/interfaces';
+import { deconstructHome } from '../helpers/deconstructors';
 
 const HeroDiv = styled.div`
   position: relative;

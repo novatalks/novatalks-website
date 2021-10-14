@@ -5,35 +5,21 @@ import Image from 'next/image';
 import Prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
 import { DarkMode } from 'use-dark-mode';
-import Div100vh from 'react-div-100vh';
 import { LazyMotion, domAnimation, m } from 'framer-motion';
-import { pt } from 'date-fns/locale';
-import fmt from 'date-fns/format';
-import parseISO from 'date-fns/parseISO';
-import { FiCalendar, FiUser } from 'react-icons/fi';
 import styled, { useTheme } from 'styled-components';
 
-import {
-  PaddingContainer,
-  HeaderPadding,
-  ImgBGWrapper,
-} from '../assets/DefaultStyles';
+import { PaddingContainer, HeaderPadding } from '../assets/DefaultStyles';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-import {
-  getPrismicClient,
-  localePathToPrismic,
-  rootIPageFromLocale,
-  LinkResolver,
-} from '../helpers/prismic';
+import { getPrismicClient, localePathToPrismic } from '../helpers/prismic';
 import { PageTypeEnum, IHome, IEventThumb } from '../helpers/interfaces';
 import {
   deconstructEventThumb,
   deconstructHome,
 } from '../helpers/deconstructors';
-import EventCardsWrapper from '../components/Cards/EventCardWrapper';
+import { EventCardWrapper } from '../components/Cards/EventCardWrapper';
 
 const HeroDiv = styled.div`
   position: relative;
@@ -117,7 +103,7 @@ export default function Home({
               }}
             />
           </PaddingContainer>
-          <EventCardsWrapper events={events} />
+          <EventCardWrapper events={events} />
           {nextPage && (
             <button type="button" onClick={handleGetMoreEvents}>
               Load more events

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { IMember, ITeam } from '../../helpers/interfaces';
-import MemberCard from './MemberCard';
+import { MemberCard } from './MemberCard';
 
 const CardsDiv = styled.div`
   display: flex;
@@ -20,10 +20,7 @@ interface Props {
   teams: ITeam[];
 }
 
-export default function MemberCardsWrapper({
-  members,
-  teams,
-}: Props): JSX.Element {
+export function MemberCardWrapper({ members, teams }: Props): JSX.Element {
   return (
     <>
       <CardsDiv>

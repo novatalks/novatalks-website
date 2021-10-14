@@ -8,7 +8,7 @@ import Head from 'next/head';
 import { pt } from 'date-fns/locale';
 import fmt from 'date-fns/format';
 import parseISO from 'date-fns/parseISO';
-import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
+import { FiCalendar } from 'react-icons/fi';
 import { useRouter } from 'next/router';
 
 import { PaddingContainer, HeaderPadding } from '../../assets/DefaultStyles';
@@ -26,7 +26,11 @@ interface CompanyProps {
   darkMode: DarkMode;
 }
 
-export default function Company({ company, preview, darkMode }: CompanyProps) {
+export default function Company({
+  company,
+  preview,
+  darkMode,
+}: CompanyProps): JSX.Element {
   const router = useRouter();
 
   if (router.isFallback) {

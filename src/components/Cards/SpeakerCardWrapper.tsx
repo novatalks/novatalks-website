@@ -22,7 +22,7 @@ interface Props {
   speakers: ISpeaker[];
 }
 
-export function SpeakerCardsSection({ speakers }: Props): JSX.Element {
+export function SpeakerCardWrapper({ speakers }: Props): JSX.Element {
   return (
     <>
       <StyledP>Speakers:</StyledP>

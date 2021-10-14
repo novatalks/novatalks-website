@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
+
 import { RiCalendarEventLine, RiUserFill } from 'react-icons/ri';
 import { useTheme } from 'styled-components';
 import { IEventThumb } from '../../helpers/interfaces';
@@ -111,7 +112,7 @@ interface Props {
   event: IEventThumb;
 }
 
-export default function EventCard({ event }: Props): JSX.Element {
+export function EventCard({ event }: Props): JSX.Element {
   const theme = useTheme();
 
   return (

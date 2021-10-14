@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { ICompany } from '../../helpers/interfaces';
-import CompanyCard from './CompanyCard';
+import { CompanyCard } from './CompanyCard';
 
 const CardsDiv = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ interface Props {
   companies: ICompany[];
 }
 
-export default function CompanyCardsWrapper({ companies }: Props): JSX.Element {
+export function CompanyCardWrapper({ companies }: Props): JSX.Element {
   return (
     <>
       <CardsDiv>

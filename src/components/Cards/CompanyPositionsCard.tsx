@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import { ICompany, ICompanyRelations } from '../../helpers/interfaces';
 import { LinkResolver } from '../../helpers/prismic';
-import SquareButton from '../SquareButton';
+import { SquareButton } from '../SquareButton';
 
 const Position = styled.span``;
 
@@ -80,7 +80,7 @@ interface CompanyPositionsCardProps {
   company_relation: ICompanyRelations;
 }
 
-export default function CompanyCard({
+export function CompanyPositionsCard({
   company,
   company_relation,
 }: CompanyPositionsCardProps): JSX.Element {
