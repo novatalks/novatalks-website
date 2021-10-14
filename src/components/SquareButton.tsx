@@ -66,7 +66,7 @@ interface Props {
   target?: string;
 }
 
-export default function SquareButton({
+export function SquareButton({
   title,
   href,
   alt = '',

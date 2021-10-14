@@ -29,9 +29,9 @@ import {
 } from '../../assets/DefaultStyles';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import SquareButton from '../../components/SquareButton';
-import EventTime from '../../components/EventTime';
-import SpeakerCardsSection from '../../components/Cards/SpeakerCardWrapper';
+import { SquareButton } from '../../components/SquareButton';
+import { EventTime } from '../../components/EventTime';
+import { SpeakerCardWrapper } from '../../components/Cards/SpeakerCardWrapper';
 
 import {
   getPrismicClient,
@@ -52,6 +52,7 @@ import {
   deconstructIBasePage,
   deconstructSpeaker,
 } from '../../helpers/deconstructors';
+import { formattedDateTime } from '../../helpers/utils';
 
 const EventHeader = styled.div`
   display: flex;
@@ -248,7 +249,7 @@ export default function Event({
               </EventHeaderContent>
             </EventHeader>
 
-            {speakers.length > 0 && <SpeakerCardsSection speakers={speakers} />}
+            {speakers.length > 0 && <SpeakerCardWrapper speakers={speakers} />}
             {event.data.content.map(item => (
               <section key={item.heading}>
                 <h2>{item.heading}</h2>
@@ -266,12 +267,9 @@ export default function Event({
               event.page.first_publication_date && (
               <LastEditSpan>
                 * edited{' '}
-                {fmt(
-                  parseISO(event.page.last_publication_date),
-                  'dd MMM yyyy',
-                  {
-                    locale: pt,
-                  }
+                {formattedDateTime(
+                  event.page.last_publication_date,
+                  event.page.currentLang
                 )}
               </LastEditSpan>
             )}
@@ -381,9 +379,9 @@ export const getStaticProps: GetStaticProps = async ({
   // get related speakers
   let speakers: ISpeaker[] = [];
   if (
-    event.speakersIds != [] &&
+    event.speakersIds !== [] &&
     event.speakersIds.length > 0 &&
-    event.speakersIds != [undefined]
+    event.speakersIds !== [undefined]
   ) {
     const speakersResponse = await getDocsByIDs(
       prismic,

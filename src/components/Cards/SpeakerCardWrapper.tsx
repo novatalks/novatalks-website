@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { ISpeaker } from '../../helpers/interfaces';
-import SpeakerCard from './SpeakerCard';
+import { SpeakerCard } from './SpeakerCard';
 
 const CardsDiv = styled.div`
   display: flex;
@@ -22,7 +22,7 @@ interface Props {
   speakers: ISpeaker[];
 }
 
-export default function SpeakerCardsSection({ speakers }: Props): JSX.Element {
+export function SpeakerCardsSection({ speakers }: Props): JSX.Element {
   return (
     <>
       <StyledP>Speakers:</StyledP>

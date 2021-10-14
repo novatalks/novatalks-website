@@ -71,7 +71,7 @@ interface Props {
   speaker: ISpeaker;
 }
 
-export default function SpeakerCard({ speaker }: Props): JSX.Element {
+export function SpeakerCard({ speaker }: Props): JSX.Element {
   return (
     <LinkResolver page={speaker}>
       <OuterWrapper key={speaker.page.uid}>

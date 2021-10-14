@@ -1,20 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
-import { pt } from 'date-fns/locale';
-import fmt from 'date-fns/format';
-import parseISO from 'date-fns/parseISO';
 import { RiCalendarEventLine, RiUserFill } from 'react-icons/ri';
 import { useTheme } from 'styled-components';
 import { IEventThumb } from '../../helpers/interfaces';
 import { ImgBGWrapperA } from '../../assets/DefaultStyles';
 import { LinkResolver } from '../../helpers/prismic';
-import SquareButton from '../SquareButton';
-
-const Date = styled.time`
-  position: absolute;
-  top: -30px;
-`;
+import { SquareButton } from '../SquareButton';
+import { formattedDateTime } from '../../helpers/utils';
 
 const TextDiv = styled.div`
   width: 100%;
@@ -123,14 +116,6 @@ export default function EventCard({ event }: Props): JSX.Element {
 
   return (
     <OutMostDiv>
-      <Date>
-        <p>
-          <RiCalendarEventLine color={theme.text} size={20} />
-          {fmt(parseISO(event.startTime), 'dd MMM yyyy', {
-            locale: pt,
-          })}
-        </p>
-      </Date>
       <OuterWrapper key={event.page.uid}>
         <OuterTextDiv>
           <TextDiv>
@@ -154,9 +139,7 @@ export default function EventCard({ event }: Props): JSX.Element {
             <h3>{event.name}</h3>
             <p>
               <RiCalendarEventLine color={theme.text} size={20} />
-              {fmt(parseISO(event.startTime), 'dd MMM yyyy', {
-                locale: pt,
-              })}
+              {formattedDateTime(event.startTime, event.page.currentLang)}
             </p>
           </TextDiv>
         </OuterTextDiv>
