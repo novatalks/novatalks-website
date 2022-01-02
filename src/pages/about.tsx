@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { DarkMode } from 'use-dark-mode';
 

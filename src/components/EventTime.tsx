@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
-import { parseISO, differenceInDays, intervalToDuration } from 'date-fns';
+import { parseISO, differenceInDays } from 'date-fns';
 import { RiCalendarEventLine } from 'react-icons/ri';
 import { formattedDateTime, formattedTime } from '../helpers/utils';
 
