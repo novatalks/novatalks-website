@@ -10,6 +10,7 @@ import fmt from 'date-fns/format';
 import parseISO from 'date-fns/parseISO';
 import { FiCalendar } from 'react-icons/fi';
 import { useRouter } from 'next/router';
+import styled from 'styled-components';
 
 import Header from '../../components/Header';
 import { CompanyPositionsCard } from '../../components/Cards/CompanyPositionsCard';
@@ -27,6 +28,41 @@ import {
   deconstructSpeaker,
   deconstructCompany,
 } from '../../helpers/deconstructors';
+
+const SpeakerHeader = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  margin: 2rem 0;
+  width: 100%;
+  height: 350px;
+  text-align: center;
+
+  > :nth-child(2) {
+    width: 35%;
+  }
+
+  > :nth-child(1) {
+    width: 65%;
+  }
+`;
+
+const SpeakerHeaderImg = styled.div`
+  position: relative;
+`;
+
+const SpeakerHeaderContent = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 10px;
+`;
+
+const CompanyPositionsCardWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+`;
 
 interface SpeakerProps {
   speaker: ISpeaker;
@@ -61,55 +97,33 @@ export default function Speaker({
       <HeaderPadding />
 
       <PaddingContainer>
-        <div>
-          <Image
-            src={speaker.image.url}
-            alt={speaker.image.alt}
-            height={speaker.image.height}
-            width={speaker.image.width}
-          />
-        </div>
+        <SpeakerHeader>
+          <SpeakerHeaderContent>
+            <h1>{speaker.name}</h1>
+            <CompanyPositionsCardWrapper>
+              {speaker.company_relations.map((item, index) => (
+                <CompanyPositionsCard
+                  company={companies[index]}
+                  company_relation={item}
+                />
+              ))}
+            </CompanyPositionsCardWrapper>
+          </SpeakerHeaderContent>
+          <SpeakerHeaderImg>
+            <Image
+              src={speaker.image.url}
+              alt={`${speaker.name} header image`}
+              layout="fill"
+              objectFit="contain"
+            />
+          </SpeakerHeaderImg>
+        </SpeakerHeader>
         <main>
-          <h1>{speaker.name}</h1>
           <p
             dangerouslySetInnerHTML={{
               __html: RichText.asHtml(speaker.description),
             }}
           />
-          <div>
-            <footer>
-              <time>
-                <FiCalendar color="#BBBBBB" size={20} />
-                {fmt(
-                  parseISO(speaker.page.first_publication_date),
-                  'dd MMM yyyy',
-                  {
-                    locale: pt,
-                  }
-                )}
-              </time>
-            </footer>
-
-            {speaker.page.last_publication_date && (
-              <span>
-                * edited{' '}
-                {fmt(
-                  parseISO(speaker.page.last_publication_date),
-                  "dd MMM yyyy', às 'HH:mm",
-                  {
-                    locale: pt,
-                  }
-                )}
-              </span>
-            )}
-          </div>
-
-          {speaker.company_relations.map((item, index) => (
-            <CompanyPositionsCard
-              company={companies[index]}
-              company_relation={item}
-            />
-          ))}
         </main>
       </PaddingContainer>
       <Footer />

@@ -10,9 +10,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import { pt } from 'date-fns/locale';
-import fmt from 'date-fns/format';
-import parseISO from 'date-fns/parseISO';
 import {
   RiTwitterLine,
   RiFacebookLine,
@@ -58,7 +55,7 @@ const EventHeader = styled.div`
   display: flex;
   flex-flow: row nowrap;
   position: relative;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
   width: 100%;
   height: 350px;
 
@@ -189,7 +186,7 @@ export default function Event({
   speakers,
   preview,
   darkMode,
-}: Props) {
+}: Props): JSX.Element {
   const router = useRouter();
 
   if (router.isFallback) {

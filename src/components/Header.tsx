@@ -18,12 +18,12 @@ const HeaderContainer = styled.header`
   align-items: center;
   justify-content: center;
   height: ${({ theme }) => theme.headerHeight};
-  width: 100%;
+  width: calc(100% - 4px);
   z-index: 9999999;
   transition: 0.3s;
   position: fixed;
-  left: 0;
-  top: 0;
+  left: 2px;
+  top: 2px;
   background: ${({ theme }) => theme.body};
   border: solid ${({ theme }) => `${theme.defaultBorder} ${theme.text}`};
 `;
