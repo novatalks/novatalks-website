@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import React, { FC } from 'react';
 import Link from 'next/link';
 import Prismic from '@prismicio/client';
@@ -6,29 +7,29 @@ import { AlternateLanguage } from '@prismicio/client/types/documents';
 import * as interfaces from './interfaces';
 import { PageTypeEnum } from './interfaces';
 
-const resolver = (page: interfaces.IPage) => {
+const resolver = (page: interfaces.IPage): string => {
   switch (page.page.pageTypeEnum) {
     case PageTypeEnum.RootHome:
       return '/';
     case PageTypeEnum.RootSpeakers:
     case PageTypeEnum.RootCompanies:
+    case PageTypeEnum.RootPodcast:
       return `/${page.page.pageTypeEnum}`;
     default:
       return `/${page.page.pageTypeEnum}/${page.page.uid}`;
   }
-  return '/';
 };
 
-export const linkResolver = (page: interfaces.IPage) => {
+export const linkResolver = (page: interfaces.IPage): string => {
   return resolver(page);
 };
 
-export const hrefResolver = (page: interfaces.IPage) => {
+export const hrefResolver = (page: interfaces.IPage): string => {
   return resolver(page);
 };
 
-export function localePathToPrismic(localePath: string) {
-  let localeStrings = process.env.localeStrings;
+export function localePathToPrismic(localePath: string): string {
+  const localeStrings = process.env.localeStrings;
   for (let i = 0; i < localeStrings.length; i++) {
     if (localePath === localeStrings[i][0]) {
       localePath = localeStrings[i][1];
@@ -38,7 +39,7 @@ export function localePathToPrismic(localePath: string) {
 }
 
 export function localePrismicToPath(localePath: string): string {
-  let localeStrings = process.env.localeStrings;
+  const localeStrings = process.env.localeStrings;
   for (let i = 0; i < localeStrings.length; i++) {
     if (localePath === localeStrings[i][1]) {
       localePath = localeStrings[i][0];
@@ -49,7 +50,7 @@ export function localePrismicToPath(localePath: string): string {
 
 export function localePos(localePath: string): number {
   localePath = localePrismicToPath(localePath);
-  let localeStrings = process.env.localeStrings;
+  const localeStrings = process.env.localeStrings;
   let i = 0;
   for (; i < localeStrings.length; i++) {
     if (localePath === localeStrings[i][0]) {
@@ -65,13 +66,13 @@ export function rootIPageFromLocale(
   pageTypeEnum: PageTypeEnum
 ): interfaces.IPage {
   locale = localePrismicToPath(locale);
-  let localeStrings = process.env.localeStrings;
-  let altLang =
+  const localeStrings = process.env.localeStrings;
+  const altLang =
     locale == localeStrings[0][0]
       ? localePathToPrismic(localeStrings[1][0])
       : localePathToPrismic(localeStrings[0][0]);
 
-  let alternativeLang: AlternateLanguage = {
+  const alternativeLang: AlternateLanguage = {
     id: '',
     type: '',
     lang: altLang,
@@ -80,7 +81,7 @@ export function rootIPageFromLocale(
   const pageType: interfaces.IPage = {
     page: {
       uid: '',
-      pageTypeEnum: pageTypeEnum,
+      pageTypeEnum,
       currentLang: locale,
       alternativeLangs: [alternativeLang],
     },
