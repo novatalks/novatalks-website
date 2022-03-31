@@ -5,10 +5,6 @@ import { DarkMode } from 'use-dark-mode';
 import { RichText } from 'prismic-dom';
 
 import Head from 'next/head';
-import { pt } from 'date-fns/locale';
-import fmt from 'date-fns/format';
-import parseISO from 'date-fns/parseISO';
-import { FiCalendar } from 'react-icons/fi';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
@@ -28,36 +24,11 @@ import {
   deconstructSpeaker,
   deconstructCompany,
 } from '../../helpers/deconstructors';
-
-const SpeakerHeader = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  position: relative;
-  margin: 2rem 0;
-  width: 100%;
-  height: 350px;
-  text-align: center;
-
-  > :nth-child(2) {
-    width: 35%;
-  }
-
-  > :nth-child(1) {
-    width: 65%;
-  }
-`;
-
-const SpeakerHeaderImg = styled.div`
-  position: relative;
-`;
-
-const SpeakerHeaderContent = styled.div`
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 10px;
-`;
+import {
+  HeaderContent,
+  HeaderImg,
+  HeaderImgContent,
+} from '../../components/Cards/HeaderImgContent';
 
 const CompanyPositionsCardWrapper = styled.div`
   display: flex;
@@ -97,8 +68,8 @@ export default function Speaker({
       <HeaderPadding />
 
       <PaddingContainer>
-        <SpeakerHeader>
-          <SpeakerHeaderContent>
+        <HeaderImgContent>
+          <HeaderContent>
             <h1>{speaker.name}</h1>
             <CompanyPositionsCardWrapper>
               {speaker.company_relations.map((item, index) => (
@@ -108,16 +79,16 @@ export default function Speaker({
                 />
               ))}
             </CompanyPositionsCardWrapper>
-          </SpeakerHeaderContent>
-          <SpeakerHeaderImg>
+          </HeaderContent>
+          <HeaderImg>
             <Image
               src={speaker.image.url}
               alt={`${speaker.name} header image`}
               layout="fill"
               objectFit="contain"
             />
-          </SpeakerHeaderImg>
-        </SpeakerHeader>
+          </HeaderImg>
+        </HeaderImgContent>
         <main>
           <p
             dangerouslySetInnerHTML={{

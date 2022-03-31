@@ -71,6 +71,14 @@ export const deconstructHome = (response, locale): interfaces.IHome => {
   };
 };
 
+export const deconstructPodcast = (response, locale): interfaces.IPodcast => {
+  return {
+    ...deconstructIPage(response, locale, interfaces.PageTypeEnum.RootPodcast),
+    ...deconstructINameDescription(response),
+    ...deconstructIImage(response),
+  };
+};
+
 export const deconstructCompany = (response, locale): interfaces.ICompany => {
   return {
     ...deconstructIBaseImagePage(

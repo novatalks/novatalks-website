@@ -10,6 +10,7 @@ export enum PageTypeEnum {
   _Unset = 'unset',
   Root = 'root',
   RootHome = 'home',
+  RootPodcast = 'podcast',
   RootCompanies = 'companies',
   RootAboutUs = 'about',
   RootSpeakers = 'speakers',
@@ -62,6 +63,8 @@ export interface IBaseImagePage extends IBasePage, IImage {}
 // PAGE ELEMENTS
 
 export type IHome = IBasePage;
+
+export interface IPodcast extends IHome, IImage {}
 
 export interface IEventThumb extends IBasePageStr, IImage {
   startTime?: string;

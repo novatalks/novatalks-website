@@ -80,11 +80,22 @@ export default function Header({
               </LinkResolver>
             </Inverted>
 
-            <NavbarList>
-              <NavItem text="Events" href="/" />
-              <NavItem text="Speakers" href="/speakers" />
-              <NavItem text="About Us" href="/about" />
-            </NavbarList>
+            {pageType.page.currentLang === 'en' && (
+              <NavbarList>
+                <NavItem text="Events" href="/" />
+                <NavItem text="Speakers" href="/speakers" />
+                <NavItem text="Podcast" href="/podcast" />
+                <NavItem text="About Us" href="/about" />
+              </NavbarList>
+            )}
+            {pageType.page.currentLang === 'pt' && (
+              <NavbarList>
+                <NavItem text="Eventos" href="/" />
+                <NavItem text="Convidados" href="/speakers" />
+                <NavItem text="Podcast" href="/podcast" />
+                <NavItem text="Sobre nós" href="/about" />
+              </NavbarList>
+            )}
 
             <SwitchersContainer>
               <Switcher darkMode={darkMode} />
