@@ -9,6 +9,7 @@ import { ImgBGWrapperA } from '../../assets/DefaultStyles';
 import { LinkResolver } from '../../helpers/prismic';
 import { SquareButton } from '../SquareButton';
 import { formattedDateTime } from '../../helpers/utils';
+import { EventTime } from '../EventTime';
 
 const TextDiv = styled.div`
   width: 100%;
@@ -138,10 +139,15 @@ export function EventCard({ event }: Props): JSX.Element {
           </ImgBGWrapperA>
           <TextDiv>
             <h3>{event.name}</h3>
-            <p>
-              <RiCalendarEventLine color={theme.text} size={20} />
-              {formattedDateTime(event.startTime, event.page.currentLang)}
-            </p>
+            {event.startTime && (
+              <EventTime
+                startTime={event.startTime}
+                endTime={event.endTime}
+                lang={event.page.currentLang}
+                alignLeft
+                onlyStart
+              />
+            )}
           </TextDiv>
         </OuterTextDiv>
       </OuterWrapper>

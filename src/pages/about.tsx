@@ -111,7 +111,15 @@ export default function About({
             )}
 
             <h2>Our Team</h2>
-            <MemberCardWrapper members={members} teams={teams} />
+            <MemberCardWrapper
+              members={members.filter(m => m.isActiveMember)}
+              teams={teams}
+            />
+            <h2>Former Members</h2>
+            <MemberCardWrapper
+              members={members.filter(m => !m.isActiveMember)}
+              teams={teams}
+            />
           </PaddingContainer>
         </m.main>
       </LazyMotion>

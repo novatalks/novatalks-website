@@ -146,7 +146,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     deconstructEventThumb(event, locale)
   );
 
-  // removeeer
+  // remover
   events = [...events, ...events, ...events];
 
   return {
