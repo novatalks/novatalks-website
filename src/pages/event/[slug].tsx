@@ -50,34 +50,11 @@ import {
   deconstructSpeaker,
 } from '../../helpers/deconstructors';
 import { formattedDateTime } from '../../helpers/utils';
-
-const EventHeader = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  position: relative;
-  margin: 2rem 0;
-  width: 100%;
-  height: 350px;
-
-  > :nth-child(1) {
-    width: 35%;
-  }
-
-  > :nth-child(2) {
-    width: 65%;
-  }
-`;
-
-const EventHeaderImg = styled.div`
-  position: relative;
-`;
-
-const EventHeaderContent = styled.div`
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: space-evenly;
-  margin: 10px;
-`;
+import {
+  HeaderContent,
+  HeaderImg,
+  HeaderImgContent,
+} from '../../components/Cards/HeaderImgContent';
 
 const EventHeaderShare = styled.div`
   display: flex;
@@ -209,16 +186,16 @@ export default function Event({
       <main>
         <PaddingContainer>
           <EventArticle>
-            <EventHeader>
-              <EventHeaderImg>
+            <HeaderImgContent>
+              <HeaderImg>
                 <Image
                   src={event.image.url}
                   alt={`${event.name} header image`}
                   layout="fill"
                   objectFit="contain"
                 />
-              </EventHeaderImg>
-              <EventHeaderContent>
+              </HeaderImg>
+              <HeaderContent>
                 <h1>{event.name}</h1>
                 {event.startTime && (
                   <EventTime
@@ -239,12 +216,12 @@ export default function Event({
                     <RiTwitterLine color="black" size={50} />
                   </Inverted>
                   <SquareButton
-                    title="Open on Zoom"
+                    title="Zoom Link"
                     href="https://www.google.com"
                   />{' '}
                 </EventHeaderShare>
-              </EventHeaderContent>
-            </EventHeader>
+              </HeaderContent>
+            </HeaderImgContent>
 
             {speakers.length > 0 && <SpeakerCardWrapper speakers={speakers} />}
             {event.data.content.map(item => (

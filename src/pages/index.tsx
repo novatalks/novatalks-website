@@ -104,11 +104,20 @@ export default function Home({
             />
           </PaddingContainer>
           <EventCardWrapper events={events} />
-          {nextPage && (
-            <button type="button" onClick={handleGetMoreEvents}>
-              Load more events
-            </button>
-          )}
+          {nextPage &&
+            home.page.currentLang ===
+              'en'(
+                <button type="button" onClick={handleGetMoreEvents}>
+                  Load more events
+                </button>
+              )}
+          {nextPage &&
+            home.page.currentLang ===
+              'pt'(
+                <button type="button" onClick={handleGetMoreEvents}>
+                  Mais eventos
+                </button>
+              )}
         </m.main>
       </LazyMotion>
       <Footer />
@@ -142,12 +151,9 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 
   const home: IHome = deconstructHome(homepageResponse, locale);
 
-  let events: IEventThumb[] = eventsResponse.results.map(event =>
+  const events: IEventThumb[] = eventsResponse.results.map(event =>
     deconstructEventThumb(event, locale)
   );
-
-  // remover
-  events = [...events, ...events, ...events];
 
   return {
     props: {

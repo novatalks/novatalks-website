@@ -11,7 +11,7 @@ import parseISO from 'date-fns/parseISO';
 import { FiCalendar } from 'react-icons/fi';
 import { useRouter } from 'next/router';
 
-import { PaddingContainer, HeaderPadding } from '../../assets/DefaultStyles';
+import { HeaderPadding, PaddingContainer } from '../../assets/DefaultStyles';
 
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
@@ -19,6 +19,11 @@ import Header from '../../components/Header';
 import { ICompany, PageTypeEnum } from '../../helpers/interfaces';
 import { getRepetitiveStaticPaths, getDocByID } from '../../helpers/prismic';
 import { deconstructCompany } from '../../helpers/deconstructors';
+import {
+  HeaderContent,
+  HeaderImg,
+  HeaderImgContent,
+} from '../../components/Cards/HeaderImgContent';
 
 interface CompanyProps {
   company: ICompany;
@@ -49,50 +54,26 @@ export default function Company({
         darkMode={darkMode}
       />
       <HeaderPadding />
-
       <PaddingContainer>
-        <div>
-          <Image
-            src={company.image.url}
-            alt={company.image.alt}
-            height={company.image.height}
-            width={company.image.width}
-          />
-        </div>
         <main>
-          <h1>{company.name}</h1>
-          <p
-            dangerouslySetInnerHTML={{
-              __html: RichText.asHtml(company.description),
-            }}
-          />
-          <div>
-            <footer>
-              <time>
-                <FiCalendar color="#BBBBBB" size={20} />
-                {fmt(
-                  parseISO(company.page.first_publication_date),
-                  'dd MMM yyyy',
-                  {
-                    locale: pt,
-                  }
-                )}
-              </time>
-            </footer>
-
-            {company.page.last_publication_date && (
-              <span>
-                * edited{' '}
-                {fmt(
-                  parseISO(company.page.last_publication_date),
-                  "dd MMM yyyy', às 'HH:mm",
-                  {
-                    locale: pt,
-                  }
-                )}
-              </span>
-            )}
-          </div>
+          <HeaderImgContent>
+            <HeaderContent>
+              <h1>{company.name}</h1>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: RichText.asHtml(company.description),
+                }}
+              />
+            </HeaderContent>
+            <HeaderImg>
+              <Image
+                src={company.image.url}
+                alt={company.image.alt}
+                height={company.image.height}
+                width={company.image.width}
+              />
+            </HeaderImg>
+          </HeaderImgContent>
         </main>
       </PaddingContainer>
       <Footer />

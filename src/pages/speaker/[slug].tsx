@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Link from 'next/link';
 import Image from 'next/image';
 import { DarkMode } from 'use-dark-mode';
 
@@ -19,6 +20,7 @@ import {
   getDocByID,
   getDocsByIDs,
   getPrismicClient,
+  LinkResolver,
 } from '../../helpers/prismic';
 import {
   deconstructSpeaker,
@@ -29,6 +31,7 @@ import {
   HeaderImg,
   HeaderImgContent,
 } from '../../components/Cards/HeaderImgContent';
+import { SquareButton } from '../../components/SquareButton';
 
 const CompanyPositionsCardWrapper = styled.div`
   display: flex;
@@ -66,7 +69,6 @@ export default function Speaker({
         darkMode={darkMode}
       />
       <HeaderPadding />
-
       <PaddingContainer>
         <HeaderImgContent>
           <HeaderContent>
@@ -97,7 +99,20 @@ export default function Speaker({
           />
         </main>
       </PaddingContainer>
-      <Footer />
+      <Footer>
+        {speaker.page.currentLang === 'en' && (
+          <Link href="/speakers">
+            <SquareButton title="See all speakers" href="/speakers" target="" />
+          </Link>
+        )}
+        {speaker.page.currentLang === 'pt' && (
+          <SquareButton
+            title="Ver todos os convidados"
+            href="/speakers"
+            target=""
+          />
+        )}
+      </Footer>
     </>
   );
 }

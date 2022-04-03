@@ -76,6 +76,7 @@ export const deconstructPodcast = (response, locale): interfaces.IPodcast => {
     ...deconstructIPage(response, locale, interfaces.PageTypeEnum.RootPodcast),
     ...deconstructINameDescription(response),
     ...deconstructIImage(response),
+    spotifyLink: response.data.spotifyLink,
   };
 };
 

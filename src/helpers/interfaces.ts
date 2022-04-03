@@ -64,7 +64,9 @@ export interface IBaseImagePage extends IBasePage, IImage {}
 
 export type IHome = IBasePage;
 
-export interface IPodcast extends IHome, IImage {}
+export interface IPodcast extends IHome, IImage {
+  spotifyLink: string;
+}
 
 export interface IEventThumb extends IBasePageStr, IImage {
   startTime?: string;

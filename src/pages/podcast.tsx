@@ -76,12 +76,11 @@ export default function Podcast({
             </HeaderImgContent>
             <PaddingContainer>
               <iframe
-                title="W3Schools Free Online Web Tutorials"
-                src="https://open.spotify.com/embed/show/0FdB25La3znPUB49te6YKq?utm_source=generator&t=0"
+                title="Spotify Embed"
+                src={podcast.spotifyLink}
                 width="100%"
                 height="232"
                 frameBorder="0"
-                allowFullScreen=""
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               />
             </PaddingContainer>

@@ -7,7 +7,7 @@ import { EventCard } from './EventCard';
 const Container = styled.div`
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   padding: 100px 8%; //width is thus 84vw
   > * {

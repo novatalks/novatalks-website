@@ -122,9 +122,16 @@ export function EventCard({ event }: Props): JSX.Element {
         <OuterTextDiv>
           <TextDiv>
             <p>{event.description}</p>
-            <LinkResolver page={event}>
-              <SquareButton title="See Event" target="" />
-            </LinkResolver>
+            {event.page.currentLang === 'en' && (
+              <LinkResolver page={event}>
+                <SquareButton title="See Event" target="" />
+              </LinkResolver>
+            )}
+            {event.page.currentLang === 'pt' && (
+              <LinkResolver page={event}>
+                <SquareButton title="Ver Evento" target="" />
+              </LinkResolver>
+            )}
           </TextDiv>
           <ImgBGWrapperA>
             <LinkResolver page={event}>
