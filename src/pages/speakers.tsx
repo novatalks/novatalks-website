@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
 import { DarkMode } from 'use-dark-mode';
+import styled from 'styled-components';
 
 import Prismic from '@prismicio/client';
 import { pt } from 'date-fns/locale';
@@ -22,7 +23,22 @@ import {
 } from '../helpers/prismic';
 import { PageTypeEnum, IPage, ISpeaker } from '../helpers/interfaces';
 import { deconstructSpeaker } from '../helpers/deconstructors';
+import { PersonCard } from '../components/Cards/PersonCard';
+import { SquareButton } from '../components/SquareButton';
 
+const CardsDiv = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  min-height: 70vh;
+  gap: 10px;
+  > * {
+    flex: 1 0 calc(10px - 30%); /*grow | shrink | basis */
+    margin: 0;
+  }
+`;
 interface SpeakersPagination {
   next_page: string;
   results: ISpeaker[];
@@ -69,7 +85,7 @@ export default function Speakers({
 
       <PaddingContainer>
         <main>
-          {speakers.map((speaker: ISpeaker) => (
+          {/* speakers.map((speaker: ISpeaker) => (
             <div key={speaker.page.uid}>
               <LinkResolver page={speaker}>
                 <a>
@@ -94,7 +110,23 @@ export default function Speakers({
                 </a>
               </LinkResolver>
             </div>
-          ))}
+                      )) */}
+          <CardsDiv>
+            {speakers.map((speaker: ISpeaker) => (
+              <PersonCard person={speaker}>
+                {pageType.page.currentLang === 'en' && (
+                  <LinkResolver page={speaker}>
+                    <SquareButton title="See more" target="" />
+                  </LinkResolver>
+                )}
+                {pageType.page.currentLang === 'pt' && (
+                  <LinkResolver page={speaker}>
+                    <SquareButton title="Ver mais" target="" />
+                  </LinkResolver>
+                )}
+              </PersonCard>
+            ))}
+          </CardsDiv>
           {nextPage && (
             <button type="button" onClick={handleGetMoreSpeakers}>
               Load more Speakers

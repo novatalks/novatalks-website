@@ -93,29 +93,48 @@ export default function About({
         >
           <HeaderPadding />
           <PaddingContainer>
-            <h1>About us</h1>
-            <h2>Our Mission</h2>
-            <p>
-              Com a NOVATalks pretendemos levar-te a debater e reflectir para
-              além do curso e partilhar com o mundo a tua visão do futuro, bem
-              como dar-te a conhecer todo um universo de tecnologias que já
-              existem e vão dar que falar.
-            </p>
+            {pageType.page.currentLang === 'pt' && (
+              <>
+                <h1>Sobre nós</h1>
+                <h2>A nossa missão</h2>
+                <p>
+                  Com a NOVATalks pretendemos levar-te a debater e reflectir
+                  para além do curso e partilhar com o mundo a tua visão do
+                  futuro, bem como dar-te a conhecer todo um universo de
+                  tecnologias que já existem e vão dar que falar.
+                </p>
 
-            <h2>Our Partners</h2>
+                <h2>Os nossos parceiros</h2>
+              </>
+            )}
+            {pageType.page.currentLang === 'en' && (
+              <>
+                <h1>About us</h1>
+                <h2>Our Mission</h2>
+                <p>
+                  Com a NOVATalks pretendemos levar-te a debater e reflectir
+                  para além do curso e partilhar com o mundo a tua visão do
+                  futuro, bem como dar-te a conhecer todo um universo de
+                  tecnologias que já existem e vão dar que falar.
+                </p>
+
+                <h2>Our Partners</h2>
+              </>
+            )}
             <CompanyCardWrapper companies={partners} />
             {nextPage && (
               <button type="button" onClick={handleGetMorePartners}>
                 Load more Companies
               </button>
             )}
-
-            <h2>Our Team</h2>
+            {pageType.page.currentLang === 'pt' && <h2>A nossa equipa</h2>}
+            {pageType.page.currentLang === 'en' && <h2>Our Team</h2>}
             <MemberCardWrapper
               members={members.filter(m => m.isActiveMember)}
               teams={teams}
             />
-            <h2>Former Members</h2>
+            {pageType.page.currentLang === 'pt' && <h2>Antigos membros</h2>}
+            {pageType.page.currentLang === 'en' && <h2>Former members</h2>}{' '}
             <MemberCardWrapper
               members={members.filter(m => !m.isActiveMember)}
               teams={teams}
