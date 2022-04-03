@@ -21,22 +21,6 @@ import {
 } from '../helpers/deconstructors';
 import { EventCardWrapper } from '../components/Cards/EventCardWrapper';
 
-const HeroDiv = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ theme }) => theme.body};
-  height: calc(100% - ${({ theme }) => theme.headerHeight});
-`;
-
-const HeaderContent = styled.div`
-  display: flex;
-  z-index: 2;
-  width: 80%;
-  height: 80%;
-`;
-
 interface EventPagination {
   next_page: string;
   results: IEventThumb[];
@@ -104,20 +88,16 @@ export default function Home({
             />
           </PaddingContainer>
           <EventCardWrapper events={events} />
-          {nextPage &&
-            home.page.currentLang ===
-              'en'(
-                <button type="button" onClick={handleGetMoreEvents}>
-                  Load more events
-                </button>
-              )}
-          {nextPage &&
-            home.page.currentLang ===
-              'pt'(
-                <button type="button" onClick={handleGetMoreEvents}>
-                  Mais eventos
-                </button>
-              )}
+          {nextPage && home.page.currentLang === 'en' && (
+            <button type="button" onClick={handleGetMoreEvents}>
+              Load more events
+            </button>
+          )}
+          {nextPage && home.page.currentLang === 'pt' && (
+            <button type="button" onClick={handleGetMoreEvents}>
+              Mais eventos
+            </button>
+          )}
         </m.main>
       </LazyMotion>
       <Footer />
