@@ -10,13 +10,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import {
-  RiTwitterLine,
-  RiFacebookLine,
-  RiCalendarLine,
-  RiUser4Line,
-  RiTimeLine,
-} from 'react-icons/ri';
+import { RiFacebookLine, RiVideoLine } from 'react-icons/ri';
 import styled from 'styled-components';
 
 import {
@@ -206,19 +200,29 @@ export default function Event({
                 )}
                 <EventHeaderShare>
                   <Inverted>
-                    <a
-                      href={`https://www.facebook.com/sharer.php?u=https:www.novatalk.com/event/${event.page.uid}?imageurl=${event.image.url}`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <RiFacebookLine color="black" size={50} />
-                    </a>
-                    <RiTwitterLine color="black" size={50} />
+                    {event.facebookLink && (
+                      <a
+                        href={event.facebookLink}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <RiFacebookLine color="black" size={50} />
+                      </a>
+                    )}
+                    {event.recordingLink && (
+                      <a
+                        href={event.recordingLink}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <RiVideoLine color="black" size={50} />
+                      </a>
+                    )}
                   </Inverted>
-                  <SquareButton
-                    title="Zoom Link"
-                    href="https://www.google.com"
-                  />{' '}
+
+                  {event.zoomLink && (
+                    <SquareButton title="Zoom Link" href={event.zoomLink} />
+                  )}
                 </EventHeaderShare>
               </HeaderContent>
             </HeaderImgContent>

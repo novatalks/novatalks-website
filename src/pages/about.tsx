@@ -81,6 +81,7 @@ export default function About({
       </Head>
 
       <Header title="Novatalks" pageType={pageType} darkMode={darkMode} />
+      <HeaderPadding />
 
       <LazyMotion features={domAnimation}>
         <m.main
@@ -91,7 +92,6 @@ export default function About({
           transition={{ type: 'linear' }} // Set the transition to linear
           className=""
         >
-          <HeaderPadding />
           <PaddingContainer>
             {pageType.page.currentLang === 'pt' && (
               <>

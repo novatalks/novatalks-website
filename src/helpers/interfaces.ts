@@ -77,6 +77,9 @@ export interface IEvent extends IBaseImagePage {
   startTime?: string;
   endTime?: string;
   speakersIds: string[];
+  facebookLink?: string;
+  zoomLink?: string;
+  recordingLink?: string;
   data: {
     content: {
       heading: string;

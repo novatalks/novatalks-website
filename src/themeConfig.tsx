@@ -60,6 +60,9 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+  html, body {
+    min-height: 100%;
+  }
   body {
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};

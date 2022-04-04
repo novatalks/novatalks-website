@@ -134,6 +134,11 @@ export const deconstructEvent = (response, locale): interfaces.IEvent => {
     startTime: response.data.starttime,
     endTime: response.data.endtime,
     speakersIds: speakerIds,
+    facebookLink: response.data.facebooklink.url,
+    zoomLink: response.data.zoomlink?.url ? response.data.zoomlink.url : null,
+    recordingLink: response.data.recordinglink?.url
+      ? response.data.recordinglink.url
+      : null,
     data: {
       content: response.data.content,
     },
