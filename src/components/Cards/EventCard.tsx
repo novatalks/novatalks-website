@@ -2,13 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import { RiCalendarEventLine, RiUserFill } from 'react-icons/ri';
 import { useTheme } from 'styled-components';
 import { IEventThumb } from '../../helpers/interfaces';
 import { ImgBGWrapperA } from '../../assets/DefaultStyles';
 import { LinkResolver } from '../../helpers/prismic';
 import { SquareButton } from '../SquareButton';
-import { formattedDateTime } from '../../helpers/utils';
 import { EventTime } from '../EventTime';
 
 const TextDiv = styled.div`
@@ -18,55 +16,103 @@ const TextDiv = styled.div`
   flex-flow: column wrap;
   justify-content: space-evenly;
   padding: 15px;
+  h3 {
+    @media (min-width: ${({ theme }) => theme.minSizes.small}) {
+      font-size: 1.3rem;
+      inline-size: calc(42vw - 200px - 30px);
+      overflow-wrap: break-word;
+    }
+    @media (min-width: ${({ theme }) => theme.minSizes.large}) {
+      font-size: 1.7rem;
+    }
+  }
+  p {
+    @media (max-width: 989px) {
+      padding-bottom: 0.5rem;
+    }
+  }
 `;
 
 const OuterTextDiv = styled.div`
   width: 100%;
   height: 100%;
-  display: grid;
-  transform: translateX(
-    calc(
-      ${({ theme }) => {
-          return `${
-            parseInt(theme.eventDivHeight, 10) -
-            2 * parseInt(theme.defaultBorderLight, 10)
-          }px`;
-        }} - 100%
-    )
-  );
-  transition: transform ease ${({ theme }) => theme.transitionSpeed};
-  grid-template-columns: 1fr ${({ theme }) => {
-      return `${
-        parseInt(theme.eventDivHeight, 10) -
-        2 * parseInt(theme.defaultBorderLight, 10)
-      }px`;
-    }} 1fr;
-  > div {
-    height: ${({ theme }) => {
-      return `${
-        parseInt(theme.eventDivHeight, 10) -
-        2 * parseInt(theme.defaultBorderLight, 10)
-      }px`;
-    }};
-  }
-  > :nth-child(2) {
-    width: 196px;
-    height: 196px;
-    right: 0;
-  }
-  > :nth-child(3) {
-    position: absolute;
-    left: 100%;
-  }
-  > :nth-child(3),
+  display: flex;
+  flex-flow: column;
+
   > :nth-child(1) {
-    width: calc(42vw - 200px);
+    display: none;
+  }
+  > :nth-child(2) div {
+    width: calc(84vw - (2 * ${({ theme }) => theme.defaultBorderLight}));
+    height: calc(84vw - (2 * ${({ theme }) => theme.defaultBorderLight}));
+  }
+
+  @media (min-width: ${({ theme }) => theme.minSizes.tablet}) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    > :nth-child(1) {
+      grid-area: 2 / 1 / 3 / 3;
+      display: flex;
+    }
+    > :nth-child(2) div {
+      width: auto;
+      height: auto;
+    }
+    > :nth-child(3) {
+      grid-area: 1 / 2 / 2 / 2;
+    }
+  }
+  @media (min-width: 990px) {
+    transform: translateX(
+      calc(
+        ${({ theme }) => {
+            return `${
+              parseInt(theme.eventDivHeight, 10) -
+              2 * parseInt(theme.defaultBorderLight, 10)
+            }px`;
+          }} - 100%
+      )
+    );
+    transition: transform ease ${({ theme }) => theme.transitionSpeed};
+    grid-template-columns: 1fr ${({ theme }) => {
+        return `${
+          parseInt(theme.eventDivHeight, 10) -
+          2 * parseInt(theme.defaultBorderLight, 10)
+        }px`;
+      }} 1fr;
+    > div {
+      height: ${({ theme }) => {
+        return `${
+          parseInt(theme.eventDivHeight, 10) -
+          2 * parseInt(theme.defaultBorderLight, 10)
+        }px`;
+      }};
+    }
+    > :nth-child(1) {
+      grid-area: unset;
+      width: 196px;
+      height: 196px;
+      right: 0;
+    }
+    > :nth-child(2) {
+      grid-area: unset;
+    }
+    > :nth-child(3) {
+      grid-area: unset;
+      position: absolute;
+      left: 100%;
+    }
+    > :nth-child(3),
+    > :nth-child(1) {
+      width: calc(42vw - 200px);
+    }
   }
 `;
 
 const OuterWrapper = styled.div`
   position: relative;
-  height: ${({ theme }) => theme.eventDivHeight};
+  height: auto;
   border: ${({ theme }) => theme.defaultBorderLight} solid
     ${({ theme }) => theme.text};
   box-sizing: border-box;
@@ -102,6 +148,10 @@ const OuterWrapper = styled.div`
     > div {
       transform: translateX(0);
     }
+  }
+
+  @media (min-width: 990px) {
+    height: ${({ theme }) => theme.eventDivHeight};
   }
 `;
 
@@ -145,7 +195,9 @@ export function EventCard({ event }: Props): JSX.Element {
             </LinkResolver>
           </ImgBGWrapperA>
           <TextDiv>
-            <h3>{event.name}</h3>
+            <LinkResolver page={event}>
+              <h3>{event.name}</h3>
+            </LinkResolver>
             {event.startTime && (
               <EventTime
                 startTime={event.startTime}

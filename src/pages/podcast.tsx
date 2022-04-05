@@ -55,26 +55,26 @@ export default function Podcast({
           className=""
         >
           <Div100vh>
-            <HeaderPadding />
-            <HeaderImgContent>
-              <HeaderContent>
-                <h1>{podcast.name}</h1>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: RichText.asHtml(podcast.description),
-                  }}
-                />
-              </HeaderContent>
-              <HeaderImg>
-                <Image
-                  src={podcast.image.url}
-                  alt={`${podcast.name} header image`}
-                  layout="fill"
-                  objectFit="contain"
-                />
-              </HeaderImg>
-            </HeaderImgContent>
             <PaddingContainer>
+              <HeaderPadding />
+              <HeaderImgContent>
+                <HeaderImg>
+                  <Image
+                    src={podcast.image.url}
+                    alt={`${podcast.name} header image`}
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                </HeaderImg>
+                <HeaderContent>
+                  <h1>{podcast.name}</h1>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: RichText.asHtml(podcast.description),
+                    }}
+                  />
+                </HeaderContent>
+              </HeaderImgContent>
               <iframe
                 title="Spotify Embed"
                 src={podcast.spotifyLink}

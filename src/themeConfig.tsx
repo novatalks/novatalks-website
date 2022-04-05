@@ -23,6 +23,18 @@ const defaultTheme = {
   eventCardSectionWidth: '86vw',
   eventCardWidth: '43vw',
   transitionSpeed: '0.25s',
+  minSizes: {
+    mobile: '320px',
+    tablet: '481px',
+    small: '769px',
+    large: '1025px',
+  },
+  maxSizes: {
+    mobile: '480px',
+    tablet: '768px',
+    small: '1024px',
+    large: '1200px',
+  },
   variants,
 };
 
@@ -89,6 +101,9 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 300;
     font-size: 3rem;
     padding: 20px 0 10px 0;
+    @media (max-width: ${({ theme }) => theme.maxSizes.tablet}) {
+      font-size: 2.5rem;
+    }
   }
 
   h2{
@@ -155,7 +170,7 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 768px) {
     html {
       font-size: 87.5%;
     }

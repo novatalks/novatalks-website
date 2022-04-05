@@ -9,7 +9,7 @@ const Container = styled.div`
   display: flex;
   align-items: start;
   justify-content: center;
-  padding: 100px 8%; //width is thus 84vw
+  padding: 60px 8%; //width is thus 84vw
   > * {
     width: 100%;
   }
@@ -31,17 +31,7 @@ const Timeline = styled.div`
   ul li:last-child {
     margin-bottom: 0;
   }
-  @media only screen and (min-width: 768px) {
-    :before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      height: calc(100% - 120px);
-      background-color: ${({ theme }) => theme.text};
-    }
+  @media (min-width: ${({ theme }) => theme.minSizes.small}) {
     ul li {
       width: 50%;
       height: 120px;
@@ -52,13 +42,23 @@ const Timeline = styled.div`
       float: left;
       clear: right;
       transform: translateX(-30px);
-      border-radius: 20px 0px 20px 20px;
     }
     ul li:nth-child(even) {
       float: right;
       clear: left;
       transform: translateX(30px);
-      border-radius: 0px 20px 20px 20px;
+    }
+
+    // vertical line and square marks
+    :before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: calc(100% - 120px);
+      background-color: ${({ theme }) => theme.text};
     }
 
     ul li::before {
@@ -80,10 +80,6 @@ const Timeline = styled.div`
     ul li:nth-child(even)::before {
       transform: translate(-50%, -50%);
       left: -30px;
-    }
-    -content .date {
-      position: absolute;
-      top: -30px;
     }
     ul li:hover::before {
       background-color: ${({ theme }) => theme.text};

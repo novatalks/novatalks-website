@@ -5,6 +5,12 @@ export const PaddingContainer = styled.div`
   padding: 0 10%;
 `;
 
+export const DynamicPaddingContainer = styled(PaddingContainer)`
+  @media (max-width: ${({ theme }) => theme.minSizes.small}) {
+    padding: 0 5%;
+  }
+`;
+
 export const TopSpacedDiv = styled.div`
   padding-top: 30px;
 `;

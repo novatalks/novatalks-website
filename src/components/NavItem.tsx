@@ -7,11 +7,16 @@ const StyledA = styled.a`
   cursor: pointer;
   background: none;
   padding: 15px;
+  height: 1rem;
   position: relative;
   border-top: ${({ theme }) => theme.defaultBorderLight} solid transparent;
   text-align: center;
   :hover {
     border-top-color: ${({ theme }) => theme.text};
+  }
+  @media (max-width: ${({ theme }) => theme.minSizes.tablet}) {
+    padding: 15px 8px;
+    font-size: 0.95rem;
   }
 `;
 

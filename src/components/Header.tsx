@@ -10,7 +10,7 @@ import NavItem from './NavItem';
 import Switcher from './Switcher/Switcher';
 import SwitcherLang from './Switcher/SwitcherLang';
 
-import { PaddingContainer, Inverted } from '../assets/DefaultStyles';
+import { DynamicPaddingContainer, Inverted } from '../assets/DefaultStyles';
 import { rootIPageFromLocale, LinkResolver } from '../helpers/prismic';
 
 const HeaderContainer = styled.header`
@@ -28,6 +28,12 @@ const HeaderContainer = styled.header`
   border: solid ${({ theme }) => `${theme.defaultBorder} ${theme.text}`};
 `;
 
+const LogoLinkWrapper = styled.a`
+  height: 100%;
+  display: flex;
+  min-width: 50px;
+`;
+
 const OuterWrapper = styled.div`
   height: ${({ theme }) => theme.headerHeight};
   position: absolute;
@@ -36,6 +42,11 @@ const OuterWrapper = styled.div`
 const Navbar = styled.nav`
   display: flex;
   justify-content: space-between;
+  @media (max-width: ${({ theme }) => theme.maxSizes.mobile}) {
+    > :nth-child(1) {
+      display: none;
+    }
+  }
 `;
 
 const NavbarList = styled.ul`
@@ -46,6 +57,8 @@ const NavbarList = styled.ul`
 const SwitchersContainer = styled.div`
   display: flex;
   align-items: center;
+  transform: scale(0.8);
+
   > :last-child {
     padding-left: 15px;
   }
@@ -65,7 +78,7 @@ export default function Header({
   return (
     <OuterWrapper>
       <HeaderContainer>
-        <PaddingContainer>
+        <DynamicPaddingContainer>
           <Navbar>
             <Inverted>
               <LinkResolver
@@ -74,9 +87,9 @@ export default function Header({
                   PageTypeEnum.RootHome
                 )}
               >
-                <a>
+                <LogoLinkWrapper>
                   <Image src={Logo} alt="Novatalks logo" height="60px" />
-                </a>
+                </LogoLinkWrapper>
               </LinkResolver>
             </Inverted>
 
@@ -105,7 +118,7 @@ export default function Header({
               )}
             </SwitchersContainer>
           </Navbar>
-        </PaddingContainer>
+        </DynamicPaddingContainer>
       </HeaderContainer>
     </OuterWrapper>
   );
