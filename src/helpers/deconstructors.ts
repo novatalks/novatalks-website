@@ -97,7 +97,7 @@ export const deconstructEventThumb = (
 ): interfaces.IEventThumb => {
   const cutDescription =
     response.data.description != null
-      ? trimSentenceAtLen(response.data.description, 100)
+      ? trimSentenceAtLen(response.data.description, 93)
       : null;
 
   return {

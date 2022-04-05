@@ -256,7 +256,7 @@ export default function Event({
               <LinkResolver page={prevEvent}>
                 <a>
                   {prevEvent.name}
-                  <span>Event anterior</span>
+                  <span>Previous event</span>
                 </a>
               </LinkResolver>
             )}
@@ -265,7 +265,7 @@ export default function Event({
               <LinkResolver page={nextEvent}>
                 <a>
                   {nextEvent.name}
-                  <span>Próximo event</span>
+                  <span>Next event</span>
                 </a>
               </LinkResolver>
             )}
