@@ -4,12 +4,6 @@ import { DarkMode } from 'use-dark-mode';
 import styled from 'styled-components';
 
 import Prismic from '@prismicio/client';
-import { pt } from 'date-fns/locale';
-import fmt from 'date-fns/format';
-import parseISO from 'date-fns/parseISO';
-import { FiCalendar, FiUser } from 'react-icons/fi';
-import Head from 'next/head';
-import { RichText } from 'prismic-dom';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -25,6 +19,7 @@ import { PageTypeEnum, IPage, ISpeaker } from '../helpers/interfaces';
 import { deconstructSpeaker } from '../helpers/deconstructors';
 import { PersonCard } from '../components/Cards/PersonCard';
 import { SquareButton } from '../components/SquareButton';
+import { NovatalksDefaultHead } from '../components/NovatalksDefaultHead';
 
 const CardsDiv = styled.div`
   display: flex;
@@ -76,9 +71,7 @@ export default function Speakers({
 
   return (
     <>
-      <Head>
-        <title>Speakers | Novatalks</title>
-      </Head>
+      <NovatalksDefaultHead title="Speakers" />
 
       <Header title="Novatalks" pageType={pageType} darkMode={darkMode} />
       <HeaderPadding />

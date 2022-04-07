@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next';
-import Head from 'next/head';
 import Image from 'next/image';
 
 import { RichText } from 'prismic-dom';
@@ -21,6 +20,7 @@ import {
   HeaderImg,
   HeaderImgContent,
 } from '../components/Cards/HeaderImgContent';
+import { NovatalksDefaultHead } from '../components/NovatalksDefaultHead';
 
 interface PodcastProps {
   podcast: IPodcast;
@@ -35,9 +35,7 @@ export default function Podcast({
 
   return (
     <>
-      <Head>
-        <title>{podcast.name}</title>
-      </Head>
+      <NovatalksDefaultHead title={podcast.name} />
 
       <Header
         title="Contact"

@@ -1,7 +1,5 @@
 import { GetStaticProps } from 'next';
-import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
 import { DarkMode } from 'use-dark-mode';
@@ -20,6 +18,7 @@ import {
   deconstructHome,
 } from '../helpers/deconstructors';
 import { EventCardWrapper } from '../components/Cards/EventCardWrapper';
+import { NovatalksDefaultHead } from '../components/NovatalksDefaultHead';
 
 interface EventPagination {
   next_page: string;
@@ -59,9 +58,7 @@ export default function Home({
 
   return (
     <>
-      <Head>
-        <title>{home.name}</title>
-      </Head>
+      <NovatalksDefaultHead title={home.name} />
 
       <Header
         title="Novatalks"

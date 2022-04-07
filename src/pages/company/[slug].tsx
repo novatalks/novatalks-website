@@ -2,13 +2,6 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import { DarkMode } from 'use-dark-mode';
 import { RichText } from 'prismic-dom';
-
-import Head from 'next/head';
-
-import { pt } from 'date-fns/locale';
-import fmt from 'date-fns/format';
-import parseISO from 'date-fns/parseISO';
-import { FiCalendar } from 'react-icons/fi';
 import { useRouter } from 'next/router';
 
 import { HeaderPadding, PaddingContainer } from '../../assets/DefaultStyles';
@@ -24,6 +17,7 @@ import {
   HeaderImg,
   HeaderImgContent,
 } from '../../components/Cards/HeaderImgContent';
+import { NovatalksDefaultHead } from '../../components/NovatalksDefaultHead';
 
 interface CompanyProps {
   company: ICompany;
@@ -44,9 +38,7 @@ export default function Company({
 
   return (
     <>
-      <Head>
-        <title>{company.name} | Novatalks </title>
-      </Head>
+      <NovatalksDefaultHead title={company.name} imageUrl={company.image.url} />
 
       <Header
         title={company.name}

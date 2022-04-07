@@ -58,6 +58,7 @@ export interface IImage {
 
 export interface IBasePageStr extends IPage, INameDescriptionStr {}
 export interface IBasePage extends IPage, INameDescription {}
+export interface IBaseImagePageStr extends IBasePageStr, IImage {}
 export interface IBaseImagePage extends IBasePage, IImage {}
 
 // PAGE ELEMENTS
@@ -73,7 +74,7 @@ export interface IEventThumb extends IBasePageStr, IImage {
   endTime?: string;
 }
 
-export interface IEvent extends IBaseImagePage {
+export interface IEvent extends IBaseImagePageStr {
   startTime?: string;
   endTime?: string;
   speakersIds: string[];

@@ -4,7 +4,6 @@ import { DarkMode } from 'use-dark-mode';
 
 import Prismic from '@prismicio/client';
 
-import Head from 'next/head';
 import { LazyMotion, domAnimation, m } from 'framer-motion';
 import { useTheme } from 'styled-components';
 
@@ -33,6 +32,7 @@ import {
 } from '../helpers/deconstructors';
 import { MemberCardWrapper } from '../components/Cards/MemberCardWrapper';
 import { CompanyCardWrapper } from '../components/Cards/CompanyCardWrapper';
+import { NovatalksDefaultHead } from '../components/NovatalksDefaultHead';
 
 interface CompaniesPagination {
   next_page: string;
@@ -76,9 +76,7 @@ export default function About({
 
   return (
     <>
-      <Head>
-        <title>About Us | Novatalks</title>
-      </Head>
+      <NovatalksDefaultHead title="About Us" />
 
       <Header title="Novatalks" pageType={pageType} darkMode={darkMode} />
       <HeaderPadding />

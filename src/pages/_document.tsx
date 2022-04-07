@@ -6,8 +6,47 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta charSet="utf-8" />
-          <Favicon />
+          {/** Primary Meta tags */}
+          <title>Novatalks</title>
+          <meta name="title" content="Novatalks" key="title" />
+          <meta
+            name="description"
+            content="Welcome to Nova's student club for talks, workshops and events!"
+            key="description"
+          />
+
+          {/** Open Graph / Facebook */}
+          <meta property="og:type" content="website" key="ogtype" />
+          <meta property="og:title" content="Novatalks" key="ogtitle" />
+          <meta
+            property="og:description"
+            content="Welcome to Nova's student club for talks, workshops and events!"
+            key="ogdescription"
+          />
+          <meta property="og:image" content="/images/logo.jpg" key="ogimage" />
+
+          {/** Twitter */}
+          <meta
+            property="twitter:card"
+            content="summary_large_image"
+            key="twittercard"
+          />
+          <meta
+            property="twitter:title"
+            content="Novatalks"
+            key="twittertitle"
+          />
+          <meta
+            property="twitter:description"
+            content="Welcome to Nova's student club for talks, workshops and events!"
+            key="twitterdescription"
+          />
+          <meta
+            property="twitter:image"
+            content="/images/logo.jpg"
+            key="twitterimage"
+          />
+
           <script
             async
             defer

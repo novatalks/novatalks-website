@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next';
-import Head from 'next/head';
 
 import { DarkMode } from 'use-dark-mode';
 import Div100vh from 'react-div-100vh';
@@ -14,6 +13,7 @@ import ThreeJSAnim from '../components/ThreeJS/ThreeJSAnim';
 import { getPrismicClient, localePathToPrismic } from '../helpers/prismic';
 import { PageTypeEnum, IHome } from '../helpers/interfaces';
 import { deconstructHome } from '../helpers/deconstructors';
+import { NovatalksDefaultHead } from '../components/NovatalksDefaultHead';
 
 const HeroDiv = styled.div`
   position: relative;
@@ -35,9 +35,7 @@ interface HomeProps {
 export default function Contacts({ home, darkMode }: HomeProps): JSX.Element {
   return (
     <>
-      <Head>
-        <title>{home.name}</title>
-      </Head>
+      <NovatalksDefaultHead title={home.name} />
 
       <Header
         title="Contact"

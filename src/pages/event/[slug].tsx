@@ -6,7 +6,6 @@ import { DarkMode } from 'use-dark-mode';
 import Prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
 
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -49,6 +48,7 @@ import {
   HeaderImg,
   HeaderImgContent,
 } from '../../components/Cards/HeaderImgContent';
+import { NovatalksDefaultHead } from '../../components/NovatalksDefaultHead';
 
 const EventHeaderShare = styled.div`
   display: flex;
@@ -165,9 +165,11 @@ export default function Event({
 
   return (
     <>
-      <Head>
-        <title>{event.name} | Novatalks </title>
-      </Head>
+      <NovatalksDefaultHead
+        title={event.name}
+        imageUrl={event.image.url}
+        description={event.description}
+      />
 
       <Header
         title={event.name}

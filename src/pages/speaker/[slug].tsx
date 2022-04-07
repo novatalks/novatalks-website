@@ -5,7 +5,6 @@ import { DarkMode } from 'use-dark-mode';
 
 import { RichText } from 'prismic-dom';
 
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
@@ -20,7 +19,6 @@ import {
   getDocByID,
   getDocsByIDs,
   getPrismicClient,
-  LinkResolver,
 } from '../../helpers/prismic';
 import {
   deconstructSpeaker,
@@ -32,6 +30,7 @@ import {
   HeaderImgContent,
 } from '../../components/Cards/HeaderImgContent';
 import { SquareButton } from '../../components/SquareButton';
+import { NovatalksDefaultHead } from '../../components/NovatalksDefaultHead';
 
 const CompanyPositionsCardWrapper = styled.div`
   display: flex;
@@ -59,9 +58,7 @@ export default function Speaker({
 
   return (
     <>
-      <Head>
-        <title>{speaker.name} | Novatalks </title>
-      </Head>
+      <NovatalksDefaultHead title={speaker.name} imageUrl={speaker.image.url} />
 
       <Header
         title={speaker.name}
@@ -157,8 +154,6 @@ export const getStaticProps: GetStaticProps = async ({
     companyIds,
     locale
   );
-
-  console.log(speakerCompanies.results_size);
 
   let companies: ICompany[] = [];
 

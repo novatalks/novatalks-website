@@ -95,7 +95,7 @@ export const deconstructEventThumb = (
   response,
   locale
 ): interfaces.IEventThumb => {
-  const cutDescription =
+  const cutDescription: string =
     response.data.description != null
       ? trimSentenceAtLen(response.data.description, 93)
       : null;
@@ -130,7 +130,8 @@ export const deconstructEvent = (response, locale): interfaces.IEvent => {
       locale,
       interfaces.PageTypeEnum.Event
     ),
-    ...deconstructINameDescription(response),
+    name: response.data.name,
+    description: response.data.description,
     startTime: response.data.starttime,
     endTime: response.data.endtime,
     speakersIds: speakerIds,
